@@ -1,0 +1,7 @@
+
+-lib sfhaxe
+# Do haxelib install sfhaxe before this.
+
+-cp src
+-main Basic
+-lua basic.lua
