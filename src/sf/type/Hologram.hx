@@ -1,104 +1,108 @@
 package sf.type;
-extern class Hologram {
+extern class HologramData {
 	/**
-		SERVER	
+		SERVER
 		 Sets the hologram's angular velocity.
 	**/
 	@:native("setAngVel") public function setAngVel(angvel:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Animates a hologram
 	**/
 	@:native("setAnimation") public function setAnimation(animation:Any,frame:Any,rate:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Suppress Engine Lighting of a hologram. Disabled by default.
 	**/
 	@:native("suppressEngineLighting") public function suppressEngineLighting(suppress:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Sets the hologram scale. Basically the same as setRenderMatrix() with a scaled matrix
 	**/
 	@:native("setScale") public function setScale(scale:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Gets the hologram scale.
 	**/
 	@:native("getScale") public function getScale():Any;
 	/**
-		CLIENT	
+		CLIENT
 		 Manually draws a hologram, requires a 3d render context
 	**/
 	@:native("draw") public function draw():Void;
 	/**
-		CLIENT	
+		CLIENT
 		 Sets the texture filtering function when viewing a close texture
 	**/
 	@:native("setFilterMag") public function setFilterMag(val:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Applies engine effects to the hologram
 	**/
 	@:native("addEffects") public function addEffects(effect:Any):Void;
 	/**
-		CLIENT	
+		CLIENT
 		 Sets a hologram entity's rendermatrix
 	**/
 	@:native("setRenderMatrix") public function setRenderMatrix(mat:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Sets the hologram's position.
 	**/
 	@:native("setPos") public function setPos(vec:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Sets the hologram's angles.
 	**/
 	@:native("setAngles") public function setAngles(ang:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Sets the model of a hologram
 	**/
 	@:native("setModel") public function setModel(model:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Suppress Engine Lighting of a hologram. Disabled by default.
 	**/
 	@:native("getSuppressEngineLighting") public function getSuppressEngineLighting(suppress:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Removes engine effects from the hologram
 	**/
 	@:native("removeEffects") public function removeEffects(effect:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Removes a hologram
 	**/
 	@:native("remove") public function remove():Void;
 	/**
-		SERVER	
+		SERVER
 		 Sets the hologram linear velocity
 	**/
 	@:native("setVel") public function setVel(vel:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Parents a hologram
 	**/
 	@:native("setParent") public function setParent(ent:Any,attachment:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Sets the hologram size in game units
 	**/
 	@:native("setSize") public function setSize(size:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Updates a clip plane
 	**/
 	@:native("setClip") public function setClip(index:Any,enabled:Any,origin:Any,normal:Any,entity:Any):Void;
 	/**
-		CLIENT	
+		CLIENT
 		 Sets the texture filtering function when viewing a far texture
 	**/
 	@:native("setFilterMin") public function setFilterMin(val:Any):Void;
+}
+
+@:forward
+extern abstract Hologram(HologramData) {
 }
 

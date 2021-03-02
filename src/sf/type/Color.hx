@@ -1,99 +1,103 @@
 package sf.type;
-extern class Color {
+extern class ColorData {
 	/**
-		SHARED	
+		SHARED
 		 Set's the color's blue and returns it.
 	**/
 	@:native("setB") public function setB(b:Any):Any;
 	/**
-		SHARED	
-		 multiplication metamethod
-	**/
-	@:native("__mul") public function __mul(b:Any):Any;
-	/**
-		SHARED	
+		SHARED
 		 Set's the color's green and returns it.
 	**/
 	@:native("setG") public function setG(g:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		 __concat metamethod
 	**/
 	@:native("__concat") public function __concat():Void;
 	/**
-		SHARED	
-		 subtraction metamethod
-	**/
-	@:native("__sub") public function __sub(lhs:Any,rhs:Any):Any;
-	/**
-		SHARED	
-		 division metamethod
-	**/
-	@:native("__div") public function __div(b:Any):Any;
-	/**
-		SHARED	
+		SHARED
 		 Set's the color's alpha and returns it.
 	**/
 	@:native("setA") public function setA(a:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		 Copies r,g,b,a from color to another.
 	**/
 	@:native("set") public function set(b:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		 Converts the color from RGB to HSV.
 	**/
 	@:native("rgbToHSV") public function rgbToHSV():Any;
 	/**
-		SHARED	
+		SHARED
 		 Copies r,g,b,a from color and returns a new color
 	**/
 	@:native("clone") public function clone():Any;
 	/**
-		SHARED	
+		SHARED
 		 Set's the color's red channel and returns it.
 	**/
 	@:native("setR") public function setR(r:Any):Any;
 	/**
-		SHARED	
-		 __newindex metamethod
-	**/
-	@:native("__newindex") public function __newindex():Void;
-	/**
-		SHARED	
+		SHARED
 		 Returns a hexadecimal string representation of the color
 	**/
 	@:native("toHex") public function toHex(alpha:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		 __tostring metamethod
 	**/
 	@:native("__tostring") public function __tostring():Void;
 	/**
-		SHARED	
-		 __eq metamethod
-	**/
-	@:native("__eq") public function __eq():Void;
-	/**
-		SHARED	
-		 __index metamethod
-	**/
-	@:native("__index") public function __index():Void;
-	/**
-		SHARED	
-		 addition metamethod
-	**/
-	@:native("__add") public function __add(lhs:Any,rhs:Any):Any;
-	/**
-		SHARED	
+		SHARED
 		 Converts the color from HSV to RGB.
 	**/
 	@:native("hsvToRGB") public function hsvToRGB():Any;
 	/**
-		SHARED	
+		SHARED
 		 Round the color values. Self-Modifies.
 	**/
 	@:native("round") public function round(idp:Any):Any;
+}
+
+@:forward
+extern abstract Color(ColorData) {
+	/**
+		SHARED
+		 multiplication metamethod
+	**/
+	@:op(A * B) public function __mul(A:Any):Any;
+	/**
+		SHARED
+		 subtraction metamethod
+	**/
+	@:op(A - B) public function __sub(A:Any):Any;
+	/**
+		SHARED
+		 division metamethod
+	**/
+	@:op(A / B) public function __div(A:Any):Any;
+	/**
+		SHARED
+		 __newindex metamethod
+	**/
+	@:op([]) public function __newindex(A:Any, B:Any):Any;
+	/**
+		SHARED
+		 __eq metamethod
+	**/
+	@:op(A==B) public function __eq(A:Any):Any;
+	/**
+		SHARED
+		 __index metamethod
+	**/
+	@:op([]) public function __index(A:Any):Any;
+	/**
+		SHARED
+		 addition metamethod
+	**/
+	@:op(A + B) public function __add(A:Any):Any;
 }
 

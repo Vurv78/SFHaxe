@@ -2,38 +2,50 @@ import sf.library.*;
 import sf.library.Builtins.*;
 import sf.type.*;
 
-final RES = 64;
-final FILTER = [chip()];
+final RES = 512;
+final FILTER = lua.Table.fromArray([chip()]);
 
 typedef TraceResult = {
-    HitNormal: Vector
+    HitNormal: Vector,
+    HitSky: Bool,
     // Hopefully will have these return values in a standard library at some point.
 }
 
 function canRun() {
-    // Using cast here, you can also just define the function returns up here.
-    return cast(quotaTotalAverage(),Int) < cast(quotaMax(),Int)*0.5;
+    var total_average: Float = quotaTotalAverage();
+    var quota_max: Float = quotaMax();
+    return total_average < quota_max*0.5;
 }
 
 function loadRender() {
-    var chip = cast(chip(), Entity);
+    var chip:Entity = chip();
     var sundir: Vector = Game.getSunInfo();
 
     var cam_pos: Vector = chip.getPos();
     var cam_angle: Angle = chip.getAngles();
 
     var bench: Int = Timer.curtime();
+    var scr_res = RES-1; // haxe ... loops are non-inclusive of the final value.
+    for (Y in 0...RES) {
+        for (X in 0...RES) {
+            var dir:Vector = Vector(1,1-(X/scr_res)-0.5,1-(Y/scr_res)-0.5);
+            dir.rotate(cam_angle);
+            dir.mul(60000);
 
-    var scr_res = RES-1; // Since we start at 0, subtract the resolution by one.
-    for (Y in 0...scr_res) {
-        for (X in 0...scr_res) {
-            trace(X,Y);
-            var dir = cast(Vector(1,1-(X/scr_res)-0.5,1-(Y/scr_res)-0.5), Vector).getRotated(cam_angle);
-            var trace: TraceResult = Trace.trace( cam_pos, cam_pos.__add(dir), FILTER, null, null, null );
-            var shading = trace.HitNormal;
+            var endpos: Vector = cam_pos + dir;
+
+            var trace: TraceResult = Trace.trace( cam_pos, endpos, FILTER, null, null, null );
             var col: Color = Color(255, 255, 255, 255);
-            col = col.__mul(shading);
-            untyped{ col[4] = 255; } // The fields of a color aren't documented, so they aren't defined, so we don't have array access, etc...
+            if(trace.HitSky) {
+                col = Color(0, 0, 255, 255);
+            }else {
+                var shading: Float = trace.HitNormal.dot(sundir);
+                // TODO: When operator overloads work, get rid of this awful loop
+                for(I in 1...4) {
+                    var v: Float = col[I];
+                    col[I] = v * shading;
+                }
+            }
             Render.selectRenderTarget("rt");
                 Render.setColor( col );
                 Render.drawRectFast(X, Y, 1, 1);
@@ -42,7 +54,8 @@ function loadRender() {
                 Coroutine.yield();
         }
     }
-    trace('Finished render in ${bench - cast Timer.curtime()} seconds!');
+    var ct: Float = Timer.curtime();
+    trace('Finished render in ${bench - ct} seconds!');
     return true;
 }
 

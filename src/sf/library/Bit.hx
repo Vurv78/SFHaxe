@@ -1,87 +1,87 @@
 package sf.library;
 @:native("bit") extern class Bit {
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("rol") public static function rol():Void;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("ror") public static function ror():Void;
 	/**
-		SHARED	
+		SHARED
 		 Compresses a string
 	**/
 	@:native("compress") public static function compress(s:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("bnot") public static function bnot():Void;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("lshift") public static function lshift():Void;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("tohex") public static function tohex():Void;
 	/**
-		SHARED	
+		SHARED
 		 Converts serialized string data to table
 	**/
 	@:native("stringToTable") public static function stringToTable(s:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("bor") public static function bor():Void;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("bswap") public static function bswap():Void;
 	/**
-		SHARED	
+		SHARED
 		 Converts a table to string serializing data types as best as it can
 	**/
 	@:native("tableToString") public static function tableToString(t:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("rshift") public static function rshift():Void;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("arshift") public static function arshift():Void;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("bxor") public static function bxor():Void;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("tobit") public static function tobit():Void;
 	/**
-		SHARED	
+		SHARED
 		 Creates a StringStream object
 	**/
 	@:native("stringstream") public static function stringstream(stream:Any,i:Any,endian:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Decompresses a string
 	**/
 	@:native("decompress") public static function decompress(s:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		
 	**/
 	@:native("band") public static function band():Void;

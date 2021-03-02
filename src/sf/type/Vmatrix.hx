@@ -1,184 +1,188 @@
 package sf.type;
-extern class VMatrix {
+extern class VMatrixData {
 	/**
-		SHARED	
+		SHARED
 		 Sets the right direction of the matrix. Negated second column
 	**/
 	@:native("setRight") public function setRight(right:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Inverts the matrix. Inverting the matrix will fail if its determinant is 0 or close to 0
 	**/
 	@:native("invert") public function invert():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns an inverted matrix. Inverting the matrix will fail if its determinant is 0 or close to 0
 	**/
 	@:native("getInverse") public function getInverse():Any;
 	/**
-		SHARED	
+		SHARED
 		 Sets the forward direction of the matrix. First column
 	**/
 	@:native("setForward") public function setForward(forward:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Returns angles
 	**/
 	@:native("getAngles") public function getAngles():Any;
 	/**
-		SHARED	
-		 Multiplies two matrices
-	**/
-	@:native("__mul") public function __mul():Any;
-	/**
-		SHARED	
+		SHARED
 		 Returns scale
 	**/
 	@:native("getScale") public function getScale():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns forward vector of matrix. First matrix column
 	**/
 	@:native("getForward") public function getForward():Any;
 	/**
-		SHARED	
-		 Subtracts two matrices (why would you do this?)
-	**/
-	@:native("__sub") public function __sub():Any;
-	/**
-		SHARED	
+		SHARED
 		 Sets the rotation or the matrix to the rotation by an axis and angle
 	**/
 	@:native("setAxisAngle") public function setAxisAngle(axis:Any,angle:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Returns a specific field in the matrix
 	**/
 	@:native("getField") public function getField(row:Any,column:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		 Sets the up direction of the matrix. Third column
 	**/
 	@:native("setUp") public function setUp(up:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Translate the matrix
 	**/
 	@:native("translate") public function translate(vec:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Returns right vector of matrix. Negated second matrix column
 	**/
 	@:native("getRight") public function getRight():Any;
 	/**
-		SHARED	
+		SHARED
 		 Sets the translation
 	**/
 	@:native("setTranslation") public function setTranslation(vec:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Inverts the matrix efficiently for translations and rotations
 	**/
 	@:native("invertTR") public function invertTR():Void;
 	/**
-		SHARED	
+		SHARED
 		 Returns whether the matrix is a rotation matrix or not. Checks if the forward, right and up vectors are orthogonal and normalized.
 	**/
 	@:native("isRotationMatrix") public function isRotationMatrix():Any;
 	/**
-		SHARED	
+		SHARED
 		 Rotate the matrix
 	**/
 	@:native("rotate") public function rotate(ang:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Scale the matrix
 	**/
 	@:native("scale") public function scale(vec:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Sets the scale
 	**/
 	@:native("setScale") public function setScale(vec:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Returns up vector of matrix. Third matrix column
 	**/
 	@:native("getUp") public function getUp():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns whether the matrix is equal to Identity matrix or not
 	**/
 	@:native("isIdentity") public function isIdentity():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns translation
 	**/
 	@:native("getTranslation") public function getTranslation():Any;
 	/**
-		SHARED	
+		SHARED
 		 Copies The matrix and returns a new matrix
 	**/
 	@:native("clone") public function clone():Any;
 	/**
-		SHARED	
+		SHARED
 		 Allows you to set all 16 fields in row-major order
 	**/
 	@:native("setUnpacked") public function setUnpacked(...varargs:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Returns all 16 fields of the matrix in row-major order
 	**/
 	@:native("unpack") public function unpack():Any;
 	/**
-		SHARED	
+		SHARED
 		 Copies the values from the second matrix to the first matrix. Self-Modifies
 	**/
 	@:native("set") public function set(src:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Sets the angles
 	**/
 	@:native("setAngles") public function setAngles(ang:Any):Void;
 	/**
-		SHARED	
-		 Adds two matrices (why would you do this?)
-	**/
-	@:native("__add") public function __add():Any;
-	/**
-		SHARED	
+		SHARED
 		 Returns an inverted matrix. Efficiently for translations and rotations
 	**/
 	@:native("getInverseTR") public function getInverseTR():Any;
 	/**
-		SHARED	
+		SHARED
 		 tostring metamethod
 	**/
 	@:native("__tostring") public function __tostring():Any;
 	/**
-		SHARED	
+		SHARED
 		 Gets the rotation axis and angle of rotation of the rotation matrix
 	**/
 	@:native("getAxisAngle") public function getAxisAngle():Any;
 	/**
-		SHARED	
+		SHARED
 		 Converts the matrix to a 4x4 table
 	**/
 	@:native("toTable") public function toTable():Any;
 	/**
-		SHARED	
+		SHARED
 		 Initializes the matrix as Identity matrix
 	**/
 	@:native("setIdentity") public function setIdentity():Void;
 	/**
-		SHARED	
+		SHARED
 		 Sets a specific field in the matrix
 	**/
 	@:native("setField") public function setField(row:Any,column:Any,value:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Scales the absolute translation
 	**/
 	@:native("scaleTranslation") public function scaleTranslation(num:Any):Void;
+}
+
+@:forward
+extern abstract VMatrix(VMatrixData) {
+	/**
+		SHARED
+		 Multiplies two matrices
+	**/
+	@:op(A * B) public function __mul(A:Any):Any;
+	/**
+		SHARED
+		 Subtracts two matrices (why would you do this?)
+	**/
+	@:op(A - B) public function __sub(A:Any):Any;
+	/**
+		SHARED
+		 Adds two matrices (why would you do this?)
+	**/
+	@:op(A + B) public function __add(A:Any):Any;
 }
 

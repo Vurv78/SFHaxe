@@ -1,87 +1,87 @@
 package sf.library;
 @:native("game") extern class Game {
 	/**
-		SHARED	
+		SHARED
 		 Returns AmmoData for given id
 	**/
 	@:native("getAmmoData") public static function getAmmoData(number:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns the number of seconds between each gametick
 	**/
 	@:native("getTickInterval") public static function getTickInterval():Any;
 	/**
-		SHARED	
+		SHARED
 		 Given a STEAM_0 style Steam ID will return a 64bit Steam ID
 	**/
 	@:native("steamIDTo64") public static function steamIDTo64(id:Any):Any;
 	/**
-		SERVER	
+		SERVER
 		 Applies explosion damage to all entities in the specified radius
 	**/
 	@:native("blastDamage") public static function blastDamage(damageOrigin:Any,damageRadius:Any,damage:Any):Void;
 	/**
-		SHARED	
+		SHARED
 		 Returns The hostname
 	**/
 	@:native("getHostname") public static function getHostname():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns the maximum player limit
 	**/
 	@:native("getMaxPlayers") public static function getMaxPlayers():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns the worldspawn entity
 	**/
 	@:native("getWorld") public static function getWorld():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns whether or not the server is a dedicated server
 	**/
 	@:native("isDedicated") public static function isDedicated():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns true if the server is on a LAN
 	**/
 	@:native("isLan") public static function isLan():Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns the game time scale
 	**/
 	@:native("getTimeScale") public static function getTimeScale():Any;
 	/**
-		CLIENT	
+		CLIENT
 		 Check whether the skybox is visible from the point specified
 	**/
 	@:native("isSkyboxVisibleFromPoint") public static function isSkyboxVisibleFromPoint(position:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns whether or not the current game is single player
 	**/
 	@:native("isSinglePlayer") public static function isSinglePlayer():Any;
 	/**
-		SHARED	
+		SHARED
 		 Given a 64bit SteamID will return a STEAM_0: style Steam ID
 	**/
 	@:native("steamIDFrom64") public static function steamIDFrom64(id:Any):Any;
 	/**
-		SHARED	
+		SHARED
 		 Returns the map name
 	**/
 	@:native("getMap") public static function getMap():Any;
 	/**
-		CLIENT	
+		CLIENT
 		 Returns the direction and how obstructed the map's sun is or nil if it doesn't exist
 	**/
 	@:native("getSunInfo") public static function getSunInfo():Any;
 	/**
-		SHARED	
+		SHARED
 		 Checks whether the specified game is mounted
 	**/
 	@:native("isMounted") public static function isMounted(str:Any):Any;
 	/**
-		CLIENT	
+		CLIENT
 		 Returns if the game has focus or not, i.e. will return false if the game is minimized
 	**/
 	@:native("hasFocus") public static function hasFocus():Any;

@@ -1,24 +1,28 @@
 package sf.type;
-extern class Markup {
+extern class MarkupData {
 	/**
-		CLIENT	
+		CLIENT
 		 Get the object size
 	**/
 	@:native("getSize") public function getSize():Any;
 	/**
-		CLIENT	
+		CLIENT
 		 Draw the markup object
 	**/
 	@:native("draw") public function draw(x:Any,y:Any,xalign:Any,yalign:Any,a:Any):Void;
 	/**
-		CLIENT	
+		CLIENT
 		 Get the object width
 	**/
 	@:native("getWidth") public function getWidth():Any;
 	/**
-		CLIENT	
+		CLIENT
 		 Get the object height
 	**/
 	@:native("getHeight") public function getHeight():Any;
+}
+
+@:forward
+extern abstract Markup(MarkupData) {
 }
 
