@@ -27,7 +27,6 @@ First, download sfhaxe through haxelib by putting this in your command line.
 ```hxml
 haxelib install sfhaxe
 ```
-``haxelib install sfhaxe``  
 
 Make a haxe project, and in your ``build.hxml`` file put this:  
 ```hxml
