@@ -120,7 +120,7 @@ class Sys {
         Starfall doesn't run in a coroutine by default so make sure you're in a coroutine.
     **/
     public static function sleep(seconds: Float):Void {
-        sf.library.Coroutine.yield();
+        sf.library.Coroutine.wait(seconds);
     }
 
     /**
