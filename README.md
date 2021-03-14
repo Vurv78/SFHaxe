@@ -59,3 +59,6 @@ Make a haxe project, and in your ``build.hxml`` file put this:
 * [String Interpolation](https://haxe.org/manual/lf-string-interpolation.html)
 * [Abstract Types](https://haxe.org/manual/types-abstract.html)
 * [Much more](https://haxe.org/documentation/introduction/language-features.html)
+
+## Dependencies
+* At least Haxe 4.2.0, we're gonna take advantage of module-level fields and Rest args. (Might be optional, but I'm not gonna support any version lower than that.)
