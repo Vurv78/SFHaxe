@@ -52,7 +52,9 @@ Make a haxe project, and in your ``build.hxml`` file put this:
 * If you wanted to use all of Haxe's public libraries (see lib.haxe.org), which a good portion should be compatible with SFHaxe.
 
 ## The Power of Haxe
-* Macros
+* [Macros](https://haxe.org/manual/macro-arguments.html)
+* [Regex / Pattern Matching](https://haxe.org/manual/lf-pattern-matching.html)
+* [Null Safety](https://haxe.org/manual/cr-null-safety.html)
 * [Map Comprehension](https://haxe.org/manual/lf-map-comprehension.html)
 * [Conditional Compilation](https://haxe.org/manual/lf-condition-compilation.html)
 * [Object Oriented Classes](https://haxe.org/manual/types-class-instance.html)
