@@ -1,5 +1,0 @@
--D lua-vanilla
-# Don't try and require binary modules
-
--D lua-ver 5.1
---macro sf.macros.Init.run()

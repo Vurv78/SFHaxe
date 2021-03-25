@@ -1,2 +1,10 @@
 
+
+--library sfhaxe
+
+# Link to SFHaxe, don't need to define lua-vanilla,
+# SFHaxe does that for you.
+
 --class-path src
+--main Main
+--lua bin/SFHaxeGenerator.lua
