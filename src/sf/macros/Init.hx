@@ -1,6 +1,9 @@
 package sf.macros;
 
 import haxe.macro.Compiler;
+import haxe.macro.Context;
+
+
 
 class Init {
     static function run() {
@@ -9,6 +12,8 @@ class Init {
             // This lets us hook _hx_error and fix that, also define whether the chip is --@server or --@client
             Compiler.includeFile("sf/macros/injected/fixes.lua");
             // Compiler.excludeFile("lua/_lua/_hx_tostring.lua"); <-- It'd be nice if we could do this....
+            Sys.println("Generating SFHaxe code.");
+
             #if SHARED
                 Compiler.includeFile("sf/macros/injected/realms/shared.lua");
                 Compiler.define("CLIENT");
