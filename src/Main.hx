@@ -140,6 +140,11 @@ function sfTypeToHx(arg: SFType):String {
     var type = arg.type;
     if (type == null)
         return "Void";
+
+    var to_hx_raw = GENERIC_LUA_TYPES[arg.raw];
+    if (to_hx_raw != null)
+        return to_hx_raw;
+
     var to_hx = GENERIC_LUA_TYPES[type];
     if (to_hx != null) {
         type = to_hx;
