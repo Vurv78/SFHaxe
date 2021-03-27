@@ -1,3 +1,2 @@
 *.vs
-*.bat
-*.lua
+/bin
