@@ -5,6 +5,7 @@
 # Link to SFHaxe, don't need to define lua-vanilla,
 # SFHaxe does that for you.
 
+--define CLIENT
 --class-path src
 --main Main
 --lua bin/SFHaxeGenerator.lua
