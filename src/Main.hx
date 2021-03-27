@@ -155,7 +155,12 @@ function sfTypeToHx(arg: SFType):String {
             return "Any";
         }else {
             // SF Type.
-            type = ("sf.type."+type);
+            // Also gotta fix it because garrysmod is retarded and won't let you write uppercase,
+            // leading to us having to make our files all lowercase but start with one uppercase since Haxe classes need that.
+            // Yep. All of that because of Linux and OSX.
+            var fixed_type = type.toLowerCase();
+            var first_char = type.charAt(0).toUpperCase();
+            type = ( "sf.type." + ( first_char + fixed_type.substring(1) ) );
         }
     }
     return (arg.variadic ? "..." : "") + (arg.nullable ? "Null<" : "") + '${type}' + (arg.nullable ? ">" : "");
