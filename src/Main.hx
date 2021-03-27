@@ -38,7 +38,7 @@ final HAXE_OPS:Map<String, HxOpData> = [
 final GENERIC_LUA_TYPES = [
     "boolean" => "Bool",
     "number" => "Float", // Haxe's "Float" is actually a double. (F64)
-    "string" => "String",
+    "string" => "std.String", // Use std.String because for some reason Haxe assumes we're trying to use sf.library.String.
     "table" => "lua.Table<Dynamic,Dynamic>",
     "function" => "haxe.Constraints.Function",
     "thread" => "lua.Thread",
@@ -128,7 +128,8 @@ function getArgs(fn_data: MethodDoc):Option<String> {
     if (fn_data.params == null)
         return None;
     var args = LuaTable.toArray(fn_data.params).map(function(info) {
-        return '${mangleName( info.name.match("%w+") )}:${sfTypeToHx(info.type.into())}';
+        var type_info = info.type.into();
+        return (type_info.nullable ? "?" : "") + '${mangleName( info.name.match("%w+") )}:${sfTypeToHx(type_info)}';
     });
     return Some(args.join(", "));
 }
@@ -138,8 +139,13 @@ function getArgs(fn_data: MethodDoc):Option<String> {
 */
 function sfTypeToHx(arg: SFType):String {
     var type = arg.type;
-    if (type == null)
+    if (type == null) {
+        if (arg.types != null) {
+            // Multi-type. Not supported yet.
+            return "Dynamic";
+        }
         return "Void";
+    }
 
     var to_hx_raw = GENERIC_LUA_TYPES[arg.raw];
     if (to_hx_raw != null)
@@ -267,7 +273,7 @@ function genLibraries(docs: LuaTable<String, LibraryDoc>) {
 }
 
 function main() {
-    if(player() != owner())
+    if(player() != cast owner())
         Sys.exit(0);
     Http.get("https://raw.githubusercontent.com/thegrb93/StarfallEx/gh-pages/sf_doc.json", function(body: String) {
         var docs: LuaTable<Any, Any> = Json.decode(body);
