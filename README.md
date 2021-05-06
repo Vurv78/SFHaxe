@@ -54,7 +54,7 @@ Make a haxe project, and in your ``build.hxml`` file put this:
 
 ## The Power of Haxe
 * [Macros](https://haxe.org/manual/macro-arguments.html)
-* [Regex / Pattern Matching](https://haxe.org/manual/lf-pattern-matching.html)
+* [Regex / Pattern Matching](https://lib.haxe.org/p/hre) <!-- Putting a link to hre instead of Haxe's native Regex because it requires a module for lua. -->
 * [Null Safety](https://haxe.org/manual/cr-null-safety.html)
 * [Map Comprehension](https://haxe.org/manual/lf-map-comprehension.html)
 * [Conditional Compilation](https://haxe.org/manual/lf-condition-compilation.html)
