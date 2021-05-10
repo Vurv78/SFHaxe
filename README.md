@@ -61,6 +61,8 @@ Make a haxe project, and in your ``build.hxml`` file put this:
 * [Object Oriented Classes](https://haxe.org/manual/types-class-instance.html)
 * [String Interpolation](https://haxe.org/manual/lf-string-interpolation.html)
 * [Abstract Types](https://haxe.org/manual/types-abstract.html)
+* [Runtime Reflection](https://haxe.org/manual/std-reflection.html)
+* [Powerful IDE Support](https://marketplace.visualstudio.com/items?itemName=nadako.vshaxe) <!-- There is also IntelliJ, Vim, Atom and Sublime support. (Probably more too) -->
 * [Much more](https://haxe.org/documentation/introduction/language-features.html)
 
 ## Dependencies
