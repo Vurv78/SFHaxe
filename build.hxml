@@ -1,11 +1,20 @@
 
 
---library sfhaxe
+--library hre
+--library json2object
+
+--debug
 
 # Link to SFHaxe, don't need to define lua-vanilla,
 # SFHaxe does that for you.
 
---define CLIENT
 --class-path src
+--class-path src/generator
 --main Main
---lua bin/SFHaxeGenerator.lua
+
+--macro nullSafety("generator", Strict)
+
+--each
+
+--cpp bin/cpp
+--next

@@ -1,7 +1,7 @@
 using StringTools;
 
-// There's no public import in Haxe.
-typedef LuaTable<T, T2> = lua.Table<T, T2>;
+import haxe.ds.Map;
+import haxe.ds.StringMap;
 
 class SFType {
     public var raw:String;
@@ -47,69 +47,68 @@ abstract SFTypeConverter(String) from String {
     }
 }
 
+typedef GenericDoc = {
+    var path: String;
+    var realm: String;
+
+    @:alias("class")
+    var _class: String;
+}
+
 typedef ReturnDoc = {
-    type: SFTypeConverter,
+    type: SFTypeConverter, // SFTypeConverter
     value: String,
     description: String
 }
 
+// Extends ReturnDoc
 typedef ParamDoc = {
-    type: SFTypeConverter,
-    value: String,
-    description: String,
+    > ReturnDoc,
     name: String,
 }
 
 typedef MethodDoc = {
-    path: String,
-    realm: String,
-    // class: String, // Stupid haxe keyword detection
-    name: String,
-    description: String,
-    ?returns: LuaTable<Int, ReturnDoc>,
-    params: LuaTable<Int, ParamDoc>
+    > GenericDoc,
+    var _class: String; // Stupid haxe keyword detection
+
+    var name: String;
+    var description: String;
+    var ?params: Array<ParamDoc>;
+    var ?returns: Array<ParamDoc>;
 }
 
-typedef HookDoc = {
-    path: String,
-    realm: String,
-    // class: String, // Stupid haxe keyword detection
-    name: String,
-    description: String,
-    params: LuaTable<Int, ParamDoc>
-}
+typedef HookDoc = MethodDoc;
 
 typedef DirectiveDoc = {
-    path: String,
-    realm: String,
-    // class: String, // Stupid haxe keyword detection
-    name: String,
-    description: String,
-    params: LuaTable<Int, ParamDoc>
+    > GenericDoc,
+
+    var name: String;
+    var description: String;
+    var params: Array<ParamDoc>;
 }
 
+// Extends DirectiveDoc and adds methods
 typedef TypeDoc = {
-    path: String,
-    realm: String,
-    // class: String, // Stupid haxe keyword detection
-    name: String,
-    description: String,
-    params: LuaTable<Int, ParamDoc>,
-    methods: LuaTable<String, MethodDoc>
+    > GenericDoc,
+
+    var name: String;
+    var description: String;
+    var methods: Map<String, MethodDoc>;
 }
 
 typedef LibraryDoc = {
-    methods: LuaTable<String, MethodDoc>,
+    methods: Map<String, MethodDoc>,
     //tables: // Array<>, It's empty and we don't use it anyway.
-    libtbl: LuaTable<Int, String>,
+    libtbl: Array<String>,
     path: String,
     realm: String
 }
 
 typedef Doc = {
     Version: String,
-    Libraries: LuaTable<String, LibraryDoc>,
-    Hooks: LuaTable<String, HookDoc>,
-    Directives: LuaTable<String, DirectiveDoc>,
-    Types: LuaTable<String, TypeDoc>,
+    Libraries: Map<String, LibraryDoc>,
+    Hooks: Map<String, HookDoc>,
+    Directives: Map<String, DirectiveDoc>,
+    Types: Map<String, TypeDoc>,
 }
+
