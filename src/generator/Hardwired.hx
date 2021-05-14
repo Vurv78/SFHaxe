@@ -34,3 +34,12 @@ final GENERIC_LUA_TYPES = [
 
     "nil" => "Void", // Shouldn't happen
 ];
+
+// Classes that extend other ones.
+final CLASS_EXTENSIONS = [
+    "Player" => "Entity",
+    "Vehicle" => "Entity",
+    "Hologram" => "Entity",
+    "Weapon" => "Entity",
+    "Npc" => "Entity",
+];
