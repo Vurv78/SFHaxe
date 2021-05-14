@@ -3,69 +3,9 @@ package sf.type;
 extern class ParticleData {
 	/**
 		CLIENT
-		 Sets the velocity of the particle.
-	**/
-	#if CLIENT @:native("setVelocity") public function setVelocity(vel:sf.type.Vector):Void;#end
-	/**
-		CLIENT
-		 Sets the angular velocity of the the particle.
-	**/
-	#if CLIENT @:native("setAngleVelocity") public function setAngleVelocity(angVel:sf.type.Angle):Void;#end
-	/**
-		CLIENT
-		 Sets the material of the particle.
-	**/
-	#if CLIENT @:native("setMaterial") public function setMaterial(mat:sf.type.Material):Void;#end
-	/**
-		CLIENT
-		 Returns the current orientation of the particle.
-	**/
-	#if CLIENT @:native("getAngles") public function getAngles():sf.type.Angle;#end
-	/**
-		CLIENT
-		 Scales the velocity based on the particle speed.
-	**/
-	#if CLIENT @:native("setVelocityScale") public function setVelocityScale(doScale:Bool):Void;#end
-	/**
-		CLIENT
-		 Sets the absolute position of the particle.
-	**/
-	#if CLIENT @:native("setPos") public function setPos(pos:sf.type.Vector):Void;#end
-	/**
-		CLIENT
-		 Returns the current rotation of the particle in radians, this should only be used for 2D particles.
-	**/
-	#if CLIENT @:native("getRoll") public function getRoll():Float;#end
-	/**
-		CLIENT
-		 Sets the directional gravity aka. acceleration of the particle.
-	**/
-	#if CLIENT @:native("setGravity") public function setGravity(gravity:sf.type.Vector):Void;#end
-	/**
-		CLIENT
-		 Returns the angular velocity of the particle
-	**/
-	#if CLIENT @:native("getAngleVelocity") public function getAngleVelocity():sf.type.Angle;#end
-	/**
-		CLIENT
 		 Sets the color of the particle.
 	**/
 	#if CLIENT @:native("setColor") public function setColor(col:sf.type.Color):Void;#end
-	/**
-		CLIENT
-		 Sets the angles of the particle.
-	**/
-	#if CLIENT @:native("setAngles") public function setAngles(ang:sf.type.Angle):Void;#end
-	/**
-		CLIENT
-		 Returns the current velocity of the particle.
-	**/
-	#if CLIENT @:native("getVelocity") public function getVelocity():sf.type.Vector;#end
-	/**
-		CLIENT
-		 Sets the rotation speed of the particle in radians. This should only be used for 2D particles.
-	**/
-	#if CLIENT @:native("setRollDelta") public function setRollDelta(rollDelta:Float):Void;#end
 	/**
 		CLIENT
 		 Sets the air resistance of the the particle.
@@ -73,14 +13,64 @@ extern class ParticleData {
 	#if CLIENT @:native("setAirResistance") public function setAirResistance(airResistance:Float):Void;#end
 	/**
 		CLIENT
+		 Sets the angles of the particle.
+	**/
+	#if CLIENT @:native("setAngles") public function setAngles(ang:sf.type.Angle):Void;#end
+	/**
+		CLIENT
+		 Sets the absolute position of the particle.
+	**/
+	#if CLIENT @:native("setPos") public function setPos(pos:sf.type.Vector):Void;#end
+	/**
+		CLIENT
+		 Returns the current velocity of the particle.
+	**/
+	#if CLIENT @:native("getVelocity") public function getVelocity():sf.type.Vector;#end
+	/**
+		CLIENT
+		 Returns the current rotation of the particle in radians, this should only be used for 2D particles.
+	**/
+	#if CLIENT @:native("getRoll") public function getRoll():Float;#end
+	/**
+		CLIENT
+		 Returns the current orientation of the particle.
+	**/
+	#if CLIENT @:native("getAngles") public function getAngles():sf.type.Angle;#end
+	/**
+		CLIENT
+		 Sets the material of the particle.
+	**/
+	#if CLIENT @:native("setMaterial") public function setMaterial(mat:sf.type.Material):Void;#end
+	/**
+		CLIENT
+		 Sets the rotation speed of the particle in radians. This should only be used for 2D particles.
+	**/
+	#if CLIENT @:native("setRollDelta") public function setRollDelta(rollDelta:Float):Void;#end
+	/**
+		CLIENT
 		 Sets the 'bounciness' of the the particle.
 	**/
 	#if CLIENT @:native("setBounce") public function setBounce(bounce:Float):Void;#end
 	/**
 		CLIENT
-		 Sets the roll of the particle in radians. This should only be used for 2D particles.
+		 Returns the angular velocity of the particle
 	**/
-	#if CLIENT @:native("setRoll") public function setRoll(roll:Float):Void;#end
+	#if CLIENT @:native("getAngleVelocity") public function getAngleVelocity():sf.type.Angle;#end
+	/**
+		CLIENT
+		 Scales the velocity based on the particle speed.
+	**/
+	#if CLIENT @:native("setVelocityScale") public function setVelocityScale(doScale:Bool):Void;#end
+	/**
+		CLIENT
+		 Sets the whether the particle should collide with the world or not.
+	**/
+	#if CLIENT @:native("setCollide") public function setCollide(shouldCollide:Bool):Void;#end
+	/**
+		CLIENT
+		 Sets the directional gravity aka. acceleration of the particle.
+	**/
+	#if CLIENT @:native("setGravity") public function setGravity(gravity:sf.type.Vector):Void;#end
 	/**
 		CLIENT
 		 Returns the color of the particle.
@@ -93,14 +83,24 @@ extern class ParticleData {
 	#if CLIENT @:native("setLighting") public function setLighting(useLighting:Bool):Void;#end
 	/**
 		CLIENT
-		 Sets the whether the particle should collide with the world or not.
+		 Sets the angular velocity of the the particle.
 	**/
-	#if CLIENT @:native("setCollide") public function setCollide(shouldCollide:Bool):Void;#end
+	#if CLIENT @:native("setAngleVelocity") public function setAngleVelocity(angVel:sf.type.Angle):Void;#end
 	/**
 		CLIENT
 		 Returns the absolute position of the particle.
 	**/
 	#if CLIENT @:native("getPos") public function getPos():sf.type.Vector;#end
+	/**
+		CLIENT
+		 Sets the roll of the particle in radians. This should only be used for 2D particles.
+	**/
+	#if CLIENT @:native("setRoll") public function setRoll(roll:Float):Void;#end
+	/**
+		CLIENT
+		 Sets the velocity of the particle.
+	**/
+	#if CLIENT @:native("setVelocity") public function setVelocity(vel:sf.type.Vector):Void;#end
 }
 
 @:forward

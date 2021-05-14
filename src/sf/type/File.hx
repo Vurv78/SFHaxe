@@ -3,34 +3,9 @@ package sf.type;
 extern class FileData {
 	/**
 		CLIENT
-		 Writes a string to the file and advances the file position
+		 Reads a boolean and advances the file position
 	**/
-	#if CLIENT @:native("write") public function write(str:std.String):Void;#end
-	/**
-		CLIENT
-		 Reads a certain length of the file's bytes
-	**/
-	#if CLIENT @:native("read") public function read(n:Float):std.String;#end
-	/**
-		CLIENT
-		 Writes a float and advances the file position
-	**/
-	#if CLIENT @:native("writeFloat") public function writeFloat(x:Float):Void;#end
-	/**
-		CLIENT
-		 Writes a byte and advances the file position
-	**/
-	#if CLIENT @:native("writeByte") public function writeByte(x:Float):Void;#end
-	/**
-		CLIENT
-		 Writes a long and advances the file position
-	**/
-	#if CLIENT @:native("writeLong") public function writeLong(x:Float):Void;#end
-	/**
-		CLIENT
-		 Wait until all changes to the file are complete
-	**/
-	#if CLIENT @:native("flush") public function flush():Void;#end
+	#if CLIENT @:native("readBool") public function readBool():Bool;#end
 	/**
 		CLIENT
 		 Writes a double and advances the file position
@@ -38,29 +13,49 @@ extern class FileData {
 	#if CLIENT @:native("writeDouble") public function writeDouble(x:Float):Void;#end
 	/**
 		CLIENT
-		 Reads a line and advances the file position
+		 Returns the file's size in bytes
 	**/
-	#if CLIENT @:native("readLine") public function readLine():std.String;#end
+	#if CLIENT @:native("size") public function size():Float;#end
 	/**
 		CLIENT
-		 Reads a boolean and advances the file position
+		 Returns the current file position
 	**/
-	#if CLIENT @:native("readBool") public function readBool():Bool;#end
-	/**
-		CLIENT
-		 Writes a boolean and advances the file position
-	**/
-	#if CLIENT @:native("writeBool") public function writeBool(x:Bool):Void;#end
-	/**
-		CLIENT
-		 Reads a byte and advances the file position
-	**/
-	#if CLIENT @:native("readByte") public function readByte():Float;#end
+	#if CLIENT @:native("tell") public function tell():Float;#end
 	/**
 		CLIENT
 		 Reads a long and advances the file position
 	**/
 	#if CLIENT @:native("readLong") public function readLong():Float;#end
+	/**
+		CLIENT
+		 Wait until all changes to the file are complete
+	**/
+	#if CLIENT @:native("flush") public function flush():Void;#end
+	/**
+		CLIENT
+		 Reads a short and advances the file position
+	**/
+	#if CLIENT @:native("readShort") public function readShort():Float;#end
+	/**
+		CLIENT
+		 Reads a float and advances the file position
+	**/
+	#if CLIENT @:native("readFloat") public function readFloat():Float;#end
+	/**
+		CLIENT
+		 Reads a certain length of the file's bytes
+	**/
+	#if CLIENT @:native("read") public function read(n:Float):std.String;#end
+	/**
+		CLIENT
+		 Reads a double and advances the file position
+	**/
+	#if CLIENT @:native("readDouble") public function readDouble():Float;#end
+	/**
+		CLIENT
+		 Writes a byte and advances the file position
+	**/
+	#if CLIENT @:native("writeByte") public function writeByte(x:Float):Void;#end
 	/**
 		CLIENT
 		 Sets the file position
@@ -73,19 +68,19 @@ extern class FileData {
 	#if CLIENT @:native("close") public function close():Void;#end
 	/**
 		CLIENT
-		 Reads a double and advances the file position
+		 Writes a boolean and advances the file position
 	**/
-	#if CLIENT @:native("readDouble") public function readDouble():Float;#end
+	#if CLIENT @:native("writeBool") public function writeBool(x:Bool):Void;#end
 	/**
 		CLIENT
-		 Reads a float and advances the file position
+		 Reads a line and advances the file position
 	**/
-	#if CLIENT @:native("readFloat") public function readFloat():Float;#end
+	#if CLIENT @:native("readLine") public function readLine():std.String;#end
 	/**
 		CLIENT
-		 Moves the file position relative to its current position
+		 Writes a long and advances the file position
 	**/
-	#if CLIENT @:native("skip") public function skip(n:Float):Float;#end
+	#if CLIENT @:native("writeLong") public function writeLong(x:Float):Void;#end
 	/**
 		CLIENT
 		 Writes a short and advances the file position
@@ -93,19 +88,24 @@ extern class FileData {
 	#if CLIENT @:native("writeShort") public function writeShort(x:Float):Void;#end
 	/**
 		CLIENT
-		 Returns the current file position
+		 Writes a float and advances the file position
 	**/
-	#if CLIENT @:native("tell") public function tell():Float;#end
+	#if CLIENT @:native("writeFloat") public function writeFloat(x:Float):Void;#end
 	/**
 		CLIENT
-		 Reads a short and advances the file position
+		 Reads a byte and advances the file position
 	**/
-	#if CLIENT @:native("readShort") public function readShort():Float;#end
+	#if CLIENT @:native("readByte") public function readByte():Float;#end
 	/**
 		CLIENT
-		 Returns the file's size in bytes
+		 Moves the file position relative to its current position
 	**/
-	#if CLIENT @:native("size") public function size():Float;#end
+	#if CLIENT @:native("skip") public function skip(n:Float):Float;#end
+	/**
+		CLIENT
+		 Writes a string to the file and advances the file position
+	**/
+	#if CLIENT @:native("write") public function write(str:std.String):Void;#end
 }
 
 @:forward

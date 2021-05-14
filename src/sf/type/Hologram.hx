@@ -2,25 +2,45 @@
 package sf.type;
 extern class HologramData {
 	/**
-		SERVER
-		 Sets the hologram's angular velocity.
+		SHARED
+		 Applies engine effects to the hologram
 	**/
-	#if SERVER @:native("setAngVel") public function setAngVel(angvel:sf.type.Angle):Void;#end
+	@:native("addEffects") public function addEffects(effect:Float):Void;
+	/**
+		SHARED
+		 Updates a clip plane
+	**/
+	@:native("setClip") public function setClip(index:Float, enabled:Bool, origin:sf.type.Vector, normal:sf.type.Vector, ?entity:Null<sf.type.Entity>):Void;
+	/**
+		SHARED
+		 Sets the hologram's angles.
+	**/
+	@:native("setAngles") public function setAngles(ang:sf.type.Angle):Void;
+	/**
+		SHARED
+		 Sets the hologram's position.
+	**/
+	@:native("setPos") public function setPos(vec:sf.type.Vector):Void;
 	/**
 		SHARED
 		 Animates a hologram
 	**/
 	@:native("setAnimation") public function setAnimation(animation:Dynamic, ?frame:Null<Float>, ?rate:Null<Float>):Void;
 	/**
-		SERVER
-		 Sets the hologram linear velocity
+		SHARED
+		 Sets the hologram size in game units
 	**/
-	#if SERVER @:native("setVel") public function setVel(vel:sf.type.Vector):Void;#end
+	@:native("setSize") public function setSize(size:sf.type.Vector):Void;
 	/**
 		SHARED
-		 Sets the hologram scale. Basically the same as setRenderMatrix() with a scaled matrix
+		 Suppress Engine Lighting of a hologram. Disabled by default.
 	**/
-	@:native("setScale") public function setScale(scale:sf.type.Vector):Void;
+	@:native("suppressEngineLighting") public function suppressEngineLighting(suppress:Bool):Void;
+	/**
+		SHARED
+		 Removes a hologram
+	**/
+	@:native("remove") public function remove():Void;
 	/**
 		SHARED
 		 Gets the hologram scale.
@@ -32,15 +52,30 @@ extern class HologramData {
 	**/
 	#if CLIENT @:native("draw") public function draw():Void;#end
 	/**
+		SERVER
+		 Sets the hologram's angular velocity.
+	**/
+	#if SERVER @:native("setAngVel") public function setAngVel(angvel:sf.type.Angle):Void;#end
+	/**
+		SHARED
+		 Sets the model of a hologram
+	**/
+	@:native("setModel") public function setModel(model:std.String):Void;
+	/**
+		CLIENT
+		 Sets the texture filtering function when viewing a far texture
+	**/
+	#if CLIENT @:native("setFilterMin") public function setFilterMin(val:Float):Void;#end
+	/**
+		SHARED
+		 Sets the hologram scale. Basically the same as setRenderMatrix() with a scaled matrix
+	**/
+	@:native("setScale") public function setScale(scale:sf.type.Vector):Void;
+	/**
 		CLIENT
 		 Sets the texture filtering function when viewing a close texture
 	**/
 	#if CLIENT @:native("setFilterMag") public function setFilterMag(val:Float):Void;#end
-	/**
-		SHARED
-		 Applies engine effects to the hologram
-	**/
-	@:native("addEffects") public function addEffects(effect:Float):Void;
 	/**
 		CLIENT
 		 Sets a hologram entity's rendermatrix
@@ -48,59 +83,24 @@ extern class HologramData {
 	#if CLIENT @:native("setRenderMatrix") public function setRenderMatrix(mat:sf.type.VMatrix):Void;#end
 	/**
 		SHARED
-		 Sets the hologram's position.
-	**/
-	@:native("setPos") public function setPos(vec:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Sets the hologram's angles.
-	**/
-	@:native("setAngles") public function setAngles(ang:sf.type.Angle):Void;
-	/**
-		SHARED
-		 Sets the model of a hologram
-	**/
-	@:native("setModel") public function setModel(model:std.String):Void;
-	/**
-		SHARED
 		 Suppress Engine Lighting of a hologram. Disabled by default.
 	**/
 	@:native("getSuppressEngineLighting") public function getSuppressEngineLighting():Bool;
 	/**
-		SHARED
-		 Removes engine effects from the hologram
+		SERVER
+		 Sets the hologram linear velocity
 	**/
-	@:native("removeEffects") public function removeEffects(effect:Float):Void;
-	/**
-		SHARED
-		 Removes a hologram
-	**/
-	@:native("remove") public function remove():Void;
-	/**
-		SHARED
-		 Suppress Engine Lighting of a hologram. Disabled by default.
-	**/
-	@:native("suppressEngineLighting") public function suppressEngineLighting(suppress:Bool):Void;
-	/**
-		SHARED
-		 Updates a clip plane
-	**/
-	@:native("setClip") public function setClip(index:Float, enabled:Bool, origin:sf.type.Vector, normal:sf.type.Vector, ?entity:Null<sf.type.Entity>):Void;
-	/**
-		SHARED
-		 Sets the hologram size in game units
-	**/
-	@:native("setSize") public function setSize(size:sf.type.Vector):Void;
+	#if SERVER @:native("setVel") public function setVel(vel:sf.type.Vector):Void;#end
 	/**
 		SHARED
 		 Parents a hologram
 	**/
 	@:native("setParent") public function setParent(?ent:Null<sf.type.Entity>, ?attachment:Null<Float>):Void;
 	/**
-		CLIENT
-		 Sets the texture filtering function when viewing a far texture
+		SHARED
+		 Removes engine effects from the hologram
 	**/
-	#if CLIENT @:native("setFilterMin") public function setFilterMin(val:Float):Void;#end
+	@:native("removeEffects") public function removeEffects(effect:Float):Void;
 }
 
 @:forward

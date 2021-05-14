@@ -3,15 +3,21 @@ package sf.type;
 extern class SurfaceInfoData {
 	/**
 		SHARED
+		 Checks if the brush surface is water.
+		 This internally checks the SURFDRAW_WATER flag.
+	**/
+	@:native("isWater") public function isWater():Bool;
+	/**
+		SHARED
 		 Returns the brush surface's material.
 	**/
 	@:native("getMaterial") public function getMaterial():Dynamic;
 	/**
 		SHARED
-		 Checks if the brush surface is water.
-		 This internally checks the SURFDRAW_WATER flag.
+		 Checks if the brush surface is displaying the skybox.
+		 This internally checks the SURFDRAW_SKY flag.
 	**/
-	@:native("isWater") public function isWater():Bool;
+	@:native("isSky") public function isSky():Bool;
 	/**
 		SHARED
 		 Returns a list of vertices the brush surface is built from.
@@ -23,12 +29,6 @@ extern class SurfaceInfoData {
 		 This internally checks the SURFDRAW_NODRAW flag.
 	**/
 	@:native("isNoDraw") public function isNoDraw():Bool;
-	/**
-		SHARED
-		 Checks if the brush surface is displaying the skybox.
-		 This internally checks the SURFDRAW_SKY flag.
-	**/
-	@:native("isSky") public function isSky():Bool;
 }
 
 @:forward

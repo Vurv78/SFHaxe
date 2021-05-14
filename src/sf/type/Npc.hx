@@ -3,14 +3,19 @@ package sf.type;
 extern class NpcData {
 	/**
 		SERVER
+		 Adds a relationship to the npc
+	**/
+	#if SERVER @:native("addRelationship") public function addRelationship(str:std.String):Void;#end
+	/**
+		SERVER
+		 Makes the npc walk to a destination
+	**/
+	#if SERVER @:native("goWalk") public function goWalk(vec:sf.type.Vector):Void;#end
+	/**
+		SERVER
 		 Stops the npc
 	**/
 	#if SERVER @:native("stop") public function stop():Void;#end
-	/**
-		SERVER
-		 Makes the npc run to a destination
-	**/
-	#if SERVER @:native("goRun") public function goRun(vec:sf.type.Vector):Void;#end
 	/**
 		SERVER
 		 Gets what the npc is fighting
@@ -18,14 +23,14 @@ extern class NpcData {
 	#if SERVER @:native("getEnemy") public function getEnemy():sf.type.Entity;#end
 	/**
 		SERVER
-		 Gets the npc's relationship to the target
+		 Makes the npc run to a destination
 	**/
-	#if SERVER @:native("getRelationship") public function getRelationship(ent:sf.type.Entity):std.String;#end
+	#if SERVER @:native("goRun") public function goRun(vec:sf.type.Vector):Void;#end
 	/**
 		SERVER
-		 Gives the npc a weapon
+		 Adds a relationship to the npc with an entity
 	**/
-	#if SERVER @:native("giveWeapon") public function giveWeapon(wep:std.String):Void;#end
+	#if SERVER @:native("addEntityRelationship") public function addEntityRelationship(ent:sf.type.Entity, disp:std.String, priority:Float):Void;#end
 	/**
 		SERVER
 		 Makes the npc do a melee attack
@@ -43,24 +48,19 @@ extern class NpcData {
 	#if SERVER @:native("attackRange") public function attackRange():Void;#end
 	/**
 		SERVER
-		 Makes the npc walk to a destination
+		 Gives the npc a weapon
 	**/
-	#if SERVER @:native("goWalk") public function goWalk(vec:sf.type.Vector):Void;#end
-	/**
-		SERVER
-		 Adds a relationship to the npc
-	**/
-	#if SERVER @:native("addRelationship") public function addRelationship(str:std.String):Void;#end
-	/**
-		SERVER
-		 Adds a relationship to the npc with an entity
-	**/
-	#if SERVER @:native("addEntityRelationship") public function addEntityRelationship(ent:sf.type.Entity, disp:std.String, priority:Float):Void;#end
+	#if SERVER @:native("giveWeapon") public function giveWeapon(wep:std.String):Void;#end
 	/**
 		SERVER
 		 Tell the npc to fight this
 	**/
 	#if SERVER @:native("setEnemy") public function setEnemy(ent:sf.type.Entity):Void;#end
+	/**
+		SERVER
+		 Gets the npc's relationship to the target
+	**/
+	#if SERVER @:native("getRelationship") public function getRelationship(ent:sf.type.Entity):std.String;#end
 }
 
 @:forward

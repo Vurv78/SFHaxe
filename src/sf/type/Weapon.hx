@@ -3,19 +3,49 @@ package sf.type;
 extern class WeaponData {
 	/**
 		SHARED
-		 Gets the next time the weapon can secondary fire.
+		 Returns the tool mode of the toolgun
 	**/
-	@:native("getNextSecondaryFire") public function getNextSecondaryFire():Float;
-	/**
-		SHARED
-		 Returns the time since a weapon was last fired at a float variable
-	**/
-	@:native("lastShootTime") public function lastShootTime():Float;
+	@:native("getToolMode") public function getToolMode():std.String;
 	/**
 		SHARED
 		 Returns Ammo in primary clip
 	**/
 	@:native("clip1") public function clip1():Float;
+	/**
+		SHARED
+		 Gets the next time the weapon can secondary fire.
+	**/
+	@:native("getNextSecondaryFire") public function getNextSecondaryFire():Float;
+	/**
+		SHARED
+		 Returns Ammo in secondary clip
+	**/
+	@:native("clip2") public function clip2():Float;
+	/**
+		CLIENT
+		 Gets Display name of weapon
+	**/
+	#if CLIENT @:native("getPrintName") public function getPrintName():std.String;#end
+	/**
+		SHARED
+		 Gets the primary ammo type of the given weapon.
+	**/
+	@:native("getPrimaryAmmoType") public function getPrimaryAmmoType():Float;
+	/**
+		SHARED
+		 Returns whether the weapon is visible
+	**/
+	@:native("isWeaponVisible") public function isWeaponVisible():Bool;
+	/**
+		SHARED
+		 Turns a weapon into a string.
+	**/
+	@:native("__tostring") public function __tostring():std.String;
+	/**
+		CLIENT
+		 Returns if the weapon is carried by the local player.
+	**/
+	#if CLIENT @:native("isCarriedByLocalPlayer") public function isCarriedByLocalPlayer():Bool;#end
 	/**
 		SHARED
 		 Returns Maximum ammo in primary clip
@@ -28,49 +58,19 @@ extern class WeaponData {
 	@:native("getActivity") public function getActivity():Float;
 	/**
 		SHARED
-		 Returns Maximum ammo in secondary clip
-	**/
-	@:native("maxClip2") public function maxClip2():Float;
-	/**
-		CLIENT
-		 Gets Display name of weapon
-	**/
-	#if CLIENT @:native("getPrintName") public function getPrintName():std.String;#end
-	/**
-		SHARED
-		 Gets the next time the weapon can primary fire.
-	**/
-	@:native("getNextPrimaryFire") public function getNextPrimaryFire():Float;
-	/**
-		CLIENT
-		 Returns if the weapon is carried by the local player.
-	**/
-	#if CLIENT @:native("isCarriedByLocalPlayer") public function isCarriedByLocalPlayer():Bool;#end
-	/**
-		SHARED
-		 Returns the tool mode of the toolgun
-	**/
-	@:native("getToolMode") public function getToolMode():std.String;
-	/**
-		SHARED
-		 Turns a weapon into a string.
-	**/
-	@:native("__tostring") public function __tostring():std.String;
-	/**
-		SHARED
-		 Returns whether the weapon is visible
-	**/
-	@:native("isWeaponVisible") public function isWeaponVisible():Bool;
-	/**
-		SHARED
-		 Returns Ammo in secondary clip
-	**/
-	@:native("clip2") public function clip2():Float;
-	/**
-		SHARED
 		 Gets the secondary ammo type of the given weapon.
 	**/
 	@:native("getSecondaryAmmoType") public function getSecondaryAmmoType():Float;
+	/**
+		SHARED
+		 Returns the time since a weapon was last fired at a float variable
+	**/
+	@:native("lastShootTime") public function lastShootTime():Float;
+	/**
+		SHARED
+		 Returns Maximum ammo in secondary clip
+	**/
+	@:native("maxClip2") public function maxClip2():Float;
 	/**
 		SHARED
 		 Returns the hold type of the weapon.
@@ -78,9 +78,9 @@ extern class WeaponData {
 	@:native("getHoldType") public function getHoldType():std.String;
 	/**
 		SHARED
-		 Gets the primary ammo type of the given weapon.
+		 Gets the next time the weapon can primary fire.
 	**/
-	@:native("getPrimaryAmmoType") public function getPrimaryAmmoType():Float;
+	@:native("getNextPrimaryFire") public function getNextPrimaryFire():Float;
 }
 
 @:forward

@@ -3,9 +3,29 @@ package sf.type;
 extern class MaterialData {
 	/**
 		CLIENT
-		 Returns a float keyvalue
+		 Gets the base texture set to the material's width
 	**/
-	#if CLIENT @:native("getFloat") public function getFloat(key:std.String):Null<Float>;#end
+	#if CLIENT @:native("getWidth") public function getWidth():Float;#end
+	/**
+		CLIENT
+		 Sets a rendertarget texture to the specified texture key
+	**/
+	#if CLIENT @:native("setTextureRenderTarget") public function setTextureRenderTarget(key:std.String, name:std.String):Void;#end
+	/**
+		CLIENT
+		 Returns the material's engine name
+	**/
+	#if CLIENT @:native("getName") public function getName():std.String;#end
+	/**
+		CLIENT
+		 Sets a matrix keyvalue
+	**/
+	#if CLIENT @:native("setMatrix") public function setMatrix(key:std.String, v:sf.type.VMatrix):Void;#end
+	/**
+		CLIENT
+		 Sets a string keyvalue
+	**/
+	#if CLIENT @:native("setString") public function setString(key:std.String, v:std.String):Void;#end
 	/**
 		CLIENT
 		 Refreshes the material. Sometimes needed for certain parameters to update
@@ -13,34 +33,14 @@ extern class MaterialData {
 	#if CLIENT @:native("recompute") public function recompute():Void;#end
 	/**
 		CLIENT
-		 Returns a matrix keyvalue
+		 Sets a vector keyvalue
 	**/
-	#if CLIENT @:native("getMatrix") public function getMatrix(key:std.String):Null<sf.type.VMatrix>;#end
-	/**
-		CLIENT
-		 Returns a color pixel value of the $basetexture of a .png or .jpg material.
-	**/
-	#if CLIENT @:native("getColor") public function getColor(x:Float, y:Float):sf.type.Color;#end
-	/**
-		CLIENT
-		 Returns an int keyvalue
-	**/
-	#if CLIENT @:native("getInt") public function getInt(key:std.String):Null<Float>;#end
-	/**
-		CLIENT
-		 Sets an int keyvalue
-	**/
-	#if CLIENT @:native("setInt") public function setInt(key:std.String, v:Float):Void;#end
+	#if CLIENT @:native("setVector") public function setVector(key:std.String, v:sf.type.Vector):Void;#end
 	/**
 		CLIENT
 		 Returns a texture id keyvalue
 	**/
 	#if CLIENT @:native("getTexture") public function getTexture(key:std.String):Null<std.String>;#end
-	/**
-		CLIENT
-		 Sets a float keyvalue
-	**/
-	#if CLIENT @:native("setFloat") public function setFloat(key:std.String, v:Float):Void;#end
 	/**
 		CLIENT
 		 Loads an online image or base64 data to the specified texture key
@@ -49,59 +49,19 @@ extern class MaterialData {
 	#if CLIENT @:native("setTextureURL") public function setTextureURL(key:std.String, url:std.String, ?cb:Null<haxe.Constraints.Function>, ?done:Null<haxe.Constraints.Function>):Void;#end
 	/**
 		CLIENT
+		 Returns a float keyvalue
+	**/
+	#if CLIENT @:native("getFloat") public function getFloat(key:std.String):Null<Float>;#end
+	/**
+		CLIENT
 		 Returns a string keyvalue
 	**/
 	#if CLIENT @:native("getString") public function getString(key:std.String):Null<std.String>;#end
 	/**
 		CLIENT
-		 Gets the base texture set to the material's width
+		 Returns a matrix keyvalue
 	**/
-	#if CLIENT @:native("getWidth") public function getWidth():Float;#end
-	/**
-		CLIENT
-		 Returns a linear color-corrected vector keyvalue
-	**/
-	#if CLIENT @:native("getVectorLinear") public function getVectorLinear(key:std.String):Null<sf.type.Vector>;#end
-	/**
-		CLIENT
-		 Sets a texture keyvalue
-	**/
-	#if CLIENT @:native("setTexture") public function setTexture(key:std.String, v:std.String):Void;#end
-	/**
-		CLIENT
-		 Returns a table of material keyvalues
-	**/
-	#if CLIENT @:native("getKeyValues") public function getKeyValues():lua.Table<Dynamic,Dynamic>;#end
-	/**
-		CLIENT
-		 Returns the material's engine name
-	**/
-	#if CLIENT @:native("getName") public function getName():std.String;#end
-	/**
-		CLIENT
-		 Frees a user created material allowing you to create others
-	**/
-	#if CLIENT @:native("destroy") public function destroy():Void;#end
-	/**
-		CLIENT
-		 Sets a vector keyvalue
-	**/
-	#if CLIENT @:native("setVector") public function setVector(key:std.String, v:sf.type.Vector):Void;#end
-	/**
-		CLIENT
-		 Sets a string keyvalue
-	**/
-	#if CLIENT @:native("setString") public function setString(key:std.String, v:std.String):Void;#end
-	/**
-		CLIENT
-		 Sets a matrix keyvalue
-	**/
-	#if CLIENT @:native("setMatrix") public function setMatrix(key:std.String, v:sf.type.VMatrix):Void;#end
-	/**
-		CLIENT
-		 Returns the shader name of the material
-	**/
-	#if CLIENT @:native("getShader") public function getShader():std.String;#end
+	#if CLIENT @:native("getMatrix") public function getMatrix(key:std.String):Null<sf.type.VMatrix>;#end
 	/**
 		CLIENT
 		 Returns a vector keyvalue
@@ -109,9 +69,49 @@ extern class MaterialData {
 	#if CLIENT @:native("getVector") public function getVector(key:std.String):Null<std.String>;#end
 	/**
 		CLIENT
-		 Sets a rendertarget texture to the specified texture key
+		 Returns an int keyvalue
 	**/
-	#if CLIENT @:native("setTextureRenderTarget") public function setTextureRenderTarget(key:std.String, name:std.String):Void;#end
+	#if CLIENT @:native("getInt") public function getInt(key:std.String):Null<Float>;#end
+	/**
+		CLIENT
+		 Sets a texture keyvalue
+	**/
+	#if CLIENT @:native("setTexture") public function setTexture(key:std.String, v:std.String):Void;#end
+	/**
+		CLIENT
+		 Sets a float keyvalue
+	**/
+	#if CLIENT @:native("setFloat") public function setFloat(key:std.String, v:Float):Void;#end
+	/**
+		CLIENT
+		 Frees a user created material allowing you to create others
+	**/
+	#if CLIENT @:native("destroy") public function destroy():Void;#end
+	/**
+		CLIENT
+		 Returns the shader name of the material
+	**/
+	#if CLIENT @:native("getShader") public function getShader():std.String;#end
+	/**
+		CLIENT
+		 Returns a table of material keyvalues
+	**/
+	#if CLIENT @:native("getKeyValues") public function getKeyValues():lua.Table<Dynamic,Dynamic>;#end
+	/**
+		CLIENT
+		 Gets the base texture set to the material's height
+	**/
+	#if CLIENT @:native("getHeight") public function getHeight():Float;#end
+	/**
+		CLIENT
+		 Sets an int keyvalue
+	**/
+	#if CLIENT @:native("setInt") public function setInt(key:std.String, v:Float):Void;#end
+	/**
+		CLIENT
+		 Returns a color pixel value of the $basetexture of a .png or .jpg material.
+	**/
+	#if CLIENT @:native("getColor") public function getColor(x:Float, y:Float):sf.type.Color;#end
 	/**
 		CLIENT
 		 Sets a keyvalue to be undefined
@@ -119,9 +119,9 @@ extern class MaterialData {
 	#if CLIENT @:native("setUndefined") public function setUndefined(key:std.String):Void;#end
 	/**
 		CLIENT
-		 Gets the base texture set to the material's height
+		 Returns a linear color-corrected vector keyvalue
 	**/
-	#if CLIENT @:native("getHeight") public function getHeight():Float;#end
+	#if CLIENT @:native("getVectorLinear") public function getVectorLinear(key:std.String):Null<sf.type.Vector>;#end
 }
 
 @:forward

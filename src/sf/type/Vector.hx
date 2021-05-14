@@ -3,50 +3,10 @@ package sf.type;
 extern class VectorData {
 	/**
 		SHARED
-		 Is this vector and v equal within tolerance t.
-	**/
-	@:native("isEqualTol") public function isEqualTol(v:sf.type.Vector, t:Float):Bool;
-	/**
-		SHARED
-		 Converts vector to quaternion
-	**/
-	@:native("getQuaternion") public function getQuaternion(up:sf.type.Vector):sf.type.Quaternion;
-	/**
-		SHARED
-		 Returns the length of the vector in two dimensions, without the Z axis.
-	**/
-	@:native("getLength2D") public function getLength2D():Float;
-	/**
-		SHARED
-		 Round the vector values.
+		 Subtract v from this Vector.
 		 Self-Modifies. Does not return anything
 	**/
-	@:native("round") public function round(idp:Float):Void;
-	/**
-		SHARED
-		 Constructs a quaternion from the rotation vector. Vector direction is axis of rotation, it's magnitude is angle in degrees
-	**/
-	@:native("getQuaternionFromRotation") public function getQuaternionFromRotation():sf.type.Quaternion;
-	/**
-		SHARED
-		 Returns whenever the given vector is in a box created by the 2 other vectors.
-	**/
-	@:native("withinAABox") public function withinAABox(v1:sf.type.Vector, v2:sf.type.Vector):Bool;
-	/**
-		SHARED
-		 Return rotated vector by an axis
-	**/
-	@:native("rotateAroundAxis") public function rotateAroundAxis(axis:sf.type.Vector, ?degrees:Null<Float>, ?radians:Null<Float>):sf.type.Vector;
-	/**
-		SHARED
-		 Dot product is the cosine of the angle between both vectors multiplied by their lengths. A.B = ||A||||B||cosA.
-	**/
-	@:native("dot") public function dot(v:sf.type.Vector):Float;
-	/**
-		SHARED
-		 Get the vector's length squared ( Saves computation by skipping the square root ).
-	**/
-	@:native("getLengthSqr") public function getLengthSqr():Float;
+	@:native("sub") public function sub(v:sf.type.Vector):Void;
 	/**
 		SHARED
 		 Calculates the cross product of the 2 vectors, creates a unique perpendicular vector to both input vectors.
@@ -54,10 +14,93 @@ extern class VectorData {
 	@:native("cross") public function cross(v:sf.type.Vector):sf.type.Vector;
 	/**
 		SHARED
-		 Rotate the vector by Angle b.
+		 Returns whenever the given vector is in a box created by the 2 other vectors.
+	**/
+	@:native("withinAABox") public function withinAABox(v1:sf.type.Vector, v2:sf.type.Vector):Bool;
+	/**
+		SHARED
+		 Add v to this vector
 		 Self-Modifies. Does not return anything
 	**/
-	@:native("rotate") public function rotate(b:sf.type.Angle):Void;
+	@:native("add") public function add(v:sf.type.Vector):Void;
+	/**
+		SHARED
+		 Copies the values from the second vector to the first vector.
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("set") public function set(v:sf.type.Vector):Void;
+	/**
+		SERVER
+		 Returns whether the vector is in world
+	**/
+	#if SERVER @:native("isInWorld") public function isInWorld():Bool;#end
+	/**
+		SHARED
+		 Scalar Multiplication of the vector.
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("mul") public function mul(n:Float):Void;
+	/**
+		SHARED
+		 Returns the length squared of the vector in two dimensions, without the Z axis. ( Saves computation by skipping the square root )
+	**/
+	@:native("getLength2DSqr") public function getLength2DSqr():Float;
+	/**
+		SHARED
+		 Translates the vectors position into 2D user screen coordinates.
+	**/
+	@:native("toScreen") public function toScreen():lua.Table<Dynamic,Dynamic>;
+	/**
+		SHARED
+		 Is this vector and v equal within tolerance t.
+	**/
+	@:native("isEqualTol") public function isEqualTol(v:sf.type.Vector, t:Float):Bool;
+	/**
+		SHARED
+		 Returns an arbitrary orthogonal basis from the direction of the vector. Input must be a normalized vector
+	**/
+	@:native("getBasis") public function getBasis():Float;
+	/**
+		SHARED
+		 Dot product is the cosine of the angle between both vectors multiplied by their lengths. A.B = ||A||||B||cosA.
+	**/
+	@:native("dot") public function dot(v:sf.type.Vector):Float;
+	/**
+		SHARED
+		 Return rotated vector by an axis
+	**/
+	@:native("rotateAroundAxis") public function rotateAroundAxis(axis:sf.type.Vector, ?degrees:Null<Float>, ?radians:Null<Float>):sf.type.Vector;
+	/**
+		SHARED
+		 Returns the squared distance of 2 vectors, this is faster Vector:getDistance as calculating the square root is an expensive process.
+	**/
+	@:native("getDistanceSqr") public function getDistanceSqr(v:sf.type.Vector):Float;
+	/**
+		SHARED
+		 Set's all vector fields to 0.
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("setZero") public function setZero():Void;
+	/**
+		SHARED
+		 Returns the pythagorean distance between the vector and the other vector.
+	**/
+	@:native("getDistance") public function getDistance(v:sf.type.Vector):Float;
+	/**
+		SHARED
+		 Turns a vector into a string.
+	**/
+	@:native("__tostring") public function __tostring():std.String;
+	/**
+		SHARED
+		 Converts vector to color
+	**/
+	@:native("getColor") public function getColor():sf.type.Color;
+	/**
+		SHARED
+		 Returns a new vector with the same direction by length of 1.
+	**/
+	@:native("getNormalized") public function getNormalized():sf.type.Vector;
 	/**
 		SHARED
 		 Normalise the vector, same direction, length 1.
@@ -66,9 +109,47 @@ extern class VectorData {
 	@:native("normalize") public function normalize():Void;
 	/**
 		SHARED
-		 Returns a new vector with the same direction by length of 1.
+		 Multiply self with a Vector.
+		 Self-Modifies. Does not return anything
 	**/
-	@:native("getNormalized") public function getNormalized():sf.type.Vector;
+	@:native("vmul") public function vmul(v:sf.type.Vector):Void;
+	/**
+		SHARED
+		 Round the vector values.
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("round") public function round(idp:Float):Void;
+	/**
+		SHARED
+		 Returns the length of the vector in two dimensions, without the Z axis.
+	**/
+	@:native("getLength2D") public function getLength2D():Float;
+	/**
+		SHARED
+		 Returns the vector's euler angle with respect to the other vector as if it were the new vertical axis.
+	**/
+	@:native("getAngleEx") public function getAngleEx(v:sf.type.Vector):sf.type.Angle;
+	/**
+		SHARED
+		 "Scalar Division" of the vector.
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("div") public function div(n:Float):Void;
+	/**
+		SHARED
+		 Returns whether all fields are zero
+	**/
+	@:native("isZero") public function isZero():Bool;
+	/**
+		SHARED
+		 Returns Rotated vector by Angle b
+	**/
+	@:native("getRotated") public function getRotated(b:sf.type.Angle):sf.type.Vector;
+	/**
+		SHARED
+		 Converts vector to quaternion
+	**/
+	@:native("getQuaternion") public function getQuaternion(up:sf.type.Vector):sf.type.Quaternion;
 	/**
 		SHARED
 		 Set's the vector's x coordinate and returns the vector after modifying.
@@ -81,30 +162,9 @@ extern class VectorData {
 	@:native("setY") public function setY(y:Float):sf.type.Vector;
 	/**
 		SHARED
-		 Returns the squared distance of 2 vectors, this is faster Vector:getDistance as calculating the square root is an expensive process.
+		 Get the vector's length squared ( Saves computation by skipping the square root ).
 	**/
-	@:native("getDistanceSqr") public function getDistanceSqr(v:sf.type.Vector):Float;
-	/**
-		SHARED
-		 Converts vector to color
-	**/
-	@:native("getColor") public function getColor():sf.type.Color;
-	/**
-		SHARED
-		 Returns the length squared of the vector in two dimensions, without the Z axis. ( Saves computation by skipping the square root )
-	**/
-	@:native("getLength2DSqr") public function getLength2DSqr():Float;
-	/**
-		SHARED
-		 Copies the values from the second vector to the first vector.
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("set") public function set(v:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Get the vector's Length.
-	**/
-	@:native("getLength") public function getLength():Float;
+	@:native("getLengthSqr") public function getLengthSqr():Float;
 	/**
 		SHARED
 		 Set's the vector's z coordinate and returns the vector after modifying.
@@ -112,79 +172,10 @@ extern class VectorData {
 	@:native("setZ") public function setZ(z:Float):sf.type.Vector;
 	/**
 		SHARED
-		 Subtract v from this Vector.
+		 Rotate the vector by Angle b.
 		 Self-Modifies. Does not return anything
 	**/
-	@:native("sub") public function sub(v:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Returns whether all fields are zero
-	**/
-	@:native("isZero") public function isZero():Bool;
-	/**
-		SERVER
-		 Returns whether the vector is in world
-	**/
-	#if SERVER @:native("isInWorld") public function isInWorld():Bool;#end
-	/**
-		SHARED
-		 Returns quaternion for rotation about axis represented by the vector by an angle
-	**/
-	@:native("getQuaternionFromAxis") public function getQuaternionFromAxis(ang:Float):sf.type.Quaternion;
-	/**
-		SHARED
-		 Returns Rotated vector by Angle b
-	**/
-	@:native("getRotated") public function getRotated(b:sf.type.Angle):sf.type.Vector;
-	/**
-		SHARED
-		 Returns the pythagorean distance between the vector and the other vector.
-	**/
-	@:native("getDistance") public function getDistance(v:sf.type.Vector):Float;
-	/**
-		SHARED
-		 Copies x,y,z from a vector and returns a new vector
-	**/
-	@:native("clone") public function clone():sf.type.Vector;
-	/**
-		SHARED
-		 Turns a vector into a string.
-	**/
-	@:native("__tostring") public function __tostring():std.String;
-	/**
-		SHARED
-		 Get the vector's angle.
-	**/
-	@:native("getAngle") public function getAngle():sf.type.Angle;
-	/**
-		SHARED
-		 Multiply self with a Vector.
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("vmul") public function vmul(v:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Scalar Multiplication of the vector.
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("mul") public function mul(n:Float):Void;
-	/**
-		SHARED
-		 Translates the vectors position into 2D user screen coordinates.
-	**/
-	@:native("toScreen") public function toScreen():lua.Table<Dynamic,Dynamic>;
-	/**
-		SHARED
-		 Set's all vector fields to 0.
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("setZero") public function setZero():Void;
-	/**
-		SHARED
-		 "Scalar Division" of the vector.
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("div") public function div(n:Float):Void;
+	@:native("rotate") public function rotate(b:sf.type.Angle):Void;
 	/**
 		SHARED
 		 Divide self by a Vector.
@@ -193,44 +184,33 @@ extern class VectorData {
 	@:native("vdiv") public function vdiv(v:sf.type.Vector):Void;
 	/**
 		SHARED
-		 Returns an arbitrary orthogonal basis from the direction of the vector. Input must be a normalized vector
+		 Get the vector's Length.
 	**/
-	@:native("getBasis") public function getBasis():Float;
+	@:native("getLength") public function getLength():Float;
 	/**
 		SHARED
-		 Returns the vector's euler angle with respect to the other vector as if it were the new vertical axis.
+		 Constructs a quaternion from the rotation vector. Vector direction is axis of rotation, it's magnitude is angle in degrees
 	**/
-	@:native("getAngleEx") public function getAngleEx(v:sf.type.Vector):sf.type.Angle;
+	@:native("getQuaternionFromRotation") public function getQuaternionFromRotation():sf.type.Quaternion;
 	/**
 		SHARED
-		 Add v to this vector
-		 Self-Modifies. Does not return anything
+		 Get the vector's angle.
 	**/
-	@:native("add") public function add(v:sf.type.Vector):Void;
+	@:native("getAngle") public function getAngle():sf.type.Angle;
+	/**
+		SHARED
+		 Copies x,y,z from a vector and returns a new vector
+	**/
+	@:native("clone") public function clone():sf.type.Vector;
+	/**
+		SHARED
+		 Returns quaternion for rotation about axis represented by the vector by an angle
+	**/
+	@:native("getQuaternionFromAxis") public function getQuaternionFromAxis(ang:Float):sf.type.Quaternion;
 }
 
 @:forward
 extern abstract Vector(VectorData) {
-	/**
-		SHARED
-		 Multiplication metamethod
-	**/
-	@:op(A*B) public function __mul(A:Any):Any;
-	/**
-		SHARED
-		 Unary Minus metamethod (Negative)
-	**/
-	@:op(-A) public function __unm():Any;
-	/**
-		SHARED
-		 Sets a value at a key in the vector
-	**/
-	@:op([]) public function __newindex(A:Any, B:Any):Any;
-	/**
-		SHARED
-		 Equivalence metamethod
-	**/
-	@:op(A==B) public function __eq(A:Any):Any;
 	/**
 		SHARED
 		 Subtraction metamethod
@@ -238,9 +218,29 @@ extern abstract Vector(VectorData) {
 	@:op(A-B) public function __sub(A:Any):Any;
 	/**
 		SHARED
+		 Addition metamethod
+	**/
+	@:op(A+B) public function __add(A:Any):Any;
+	/**
+		SHARED
+		 Multiplication metamethod
+	**/
+	@:op(A*B) public function __mul(A:Any):Any;
+	/**
+		SHARED
+		 Equivalence metamethod
+	**/
+	@:op(A==B) public function __eq(A:Any):Any;
+	/**
+		SHARED
 		 Division metamethod
 	**/
 	@:op(A/B) public function __div(A:Any):Any;
+	/**
+		SHARED
+		 Sets a value at a key in the vector
+	**/
+	@:op([]) public function __newindex(A:Any, B:Any):Any;
 	/**
 		SHARED
 		 Gets a value at a key in the vector
@@ -249,8 +249,8 @@ extern abstract Vector(VectorData) {
 	@:op([]) public function __index(A:Any):Any;
 	/**
 		SHARED
-		 Addition metamethod
+		 Unary Minus metamethod (Negative)
 	**/
-	@:op(A+B) public function __add(A:Any):Any;
+	@:op(-A) public function __unm():Any;
 }
 

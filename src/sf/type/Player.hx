@@ -2,30 +2,10 @@
 package sf.type;
 extern class PlayerData {
 	/**
-		CLIENT
-		 Plays an animation on the player
-	**/
-	#if CLIENT @:native("setAnimation") public function setAnimation(sequence:Dynamic, ?progress:Null<Float>, ?rate:Null<Float>, ?loop:Null<Bool>, ?auto:Null<Bool>, ?act:Dynamic):Void;#end
-	/**
 		SHARED
-		 Returns true if the player is noclipped
+		 Returns the entity that the player is standing on
 	**/
-	@:native("isNoclipped") public function isNoclipped():Bool;
-	/**
-		CLIENT
-		 Sets the animation time
-	**/
-	#if CLIENT @:native("setAnimationTime") public function setAnimationTime(time:Float):Void;#end
-	/**
-		CLIENT
-		 Returns whether the local player has muted the player
-	**/
-	#if CLIENT @:native("isMuted") public function isMuted():Bool;#end
-	/**
-		SHARED
-		 Returns whether the player is crouching
-	**/
-	@:native("isCrouching") public function isCrouching():Bool;
+	@:native("getGroundEntity") public function getGroundEntity():sf.type.Entity;
 	/**
 		CLIENT
 		 Gets whether a animation is playing
@@ -33,34 +13,150 @@ extern class PlayerData {
 	#if CLIENT @:native("isPlayingAnimation") public function isPlayingAnimation():Bool;#end
 	/**
 		SERVER
-		 Sets a player's eye angles
+		 Returns the packet loss of the client
 	**/
-	#if SERVER @:native("setEyeAngles") public function setEyeAngles(ang:sf.type.Angle):Void;#end
-	/**
-		CLIENT
-		 Gets the progress of the animation ranging 0-1
-	**/
-	#if CLIENT @:native("getAnimationProgress") public function getAnimationProgress():Float;#end
-	/**
-		CLIENT
-		 Gets the animation time
-	**/
-	#if CLIENT @:native("getAnimationTime") public function getAnimationTime():Float;#end
+	#if SERVER @:native("getPacketLoss") public function getPacketLoss():Float;#end
 	/**
 		SHARED
-		 Returns the camera punch offset angle
+		 Returns the player's name
 	**/
-	@:native("getViewPunchAngles") public function getViewPunchAngles():sf.type.Angle;
+	@:native("getName") public function getName():std.String;
+	/**
+		SHARED
+		 Returns whether the player is typing in their chat
+	**/
+	@:native("isTyping") public function isTyping():Bool;
+	/**
+		SHARED
+		 Returns the player's jump power
+	**/
+	@:native("getJumpPower") public function getJumpPower():Float;
+	/**
+		CLIENT
+		 Sets the animation playback rate
+	**/
+	#if CLIENT @:native("setAnimationRate") public function setAnimationRate(rate:Float):Void;#end
+	/**
+		CLIENT
+		 Plays an animation on the player
+	**/
+	#if CLIENT @:native("setAnimation") public function setAnimation(sequence:Dynamic, ?progress:Null<Float>, ?rate:Null<Float>, ?loop:Null<Bool>, ?auto_advance:Null<Bool>, ?act:Dynamic):Void;#end
+	/**
+		SHARED
+		 Returns whether the player is alive
+	**/
+	@:native("isAlive") public function isAlive():Bool;
+	/**
+		SHARED
+		 Returns whether the player is an admin
+	**/
+	@:native("isAdmin") public function isAdmin():Bool;
 	/**
 		SERVER
 		 Returns whether or not the player has godmode
 	**/
 	#if SERVER @:native("hasGodMode") public function hasGodMode():Bool;#end
 	/**
-		SHARED
-		 Returns whether the player is a super admin
+		SERVER
+		 Returns the time in seconds since the player connected
 	**/
-	@:native("isSuperAdmin") public function isSuperAdmin():Bool;
+	#if SERVER @:native("getTimeConnected") public function getTimeConnected():Float;#end
+	/**
+		CLIENT
+		 Sets the animation loop
+	**/
+	#if CLIENT @:native("setAnimationLoop") public function setAnimationLoop(loop:Bool):Void;#end
+	/**
+		SHARED
+		 Returns whether the player is in a vehicle
+	**/
+	@:native("inVehicle") public function inVehicle():Bool;
+	/**
+		SHARED
+		 Returns the players armor
+	**/
+	@:native("getArmor") public function getArmor():Float;
+	/**
+		SHARED
+		 Returns the entity the player is currently using, like func_tank mounted turrets or +use prop pickups.
+	**/
+	@:native("getEntityInUse") public function getEntityInUse():sf.type.Entity;
+	/**
+		SHARED
+		 Returns a table with information of what the player is looking at
+	**/
+	@:native("getEyeTrace") public function getEyeTrace():lua.Table<Dynamic,Dynamic>;
+	/**
+		SHARED
+		 Returns the amount of kills of the player
+	**/
+	@:native("getFrags") public function getFrags():Float;
+	/**
+		SHARED
+		 Returns the player's view model
+		 In the Client realm, other players' viewmodels are not available unless they are being spectated
+	**/
+	@:native("getViewModel") public function getViewModel():sf.type.Entity;
+	/**
+		CLIENT
+		 Sets the animation progress
+	**/
+	#if CLIENT @:native("setAnimationProgress") public function setAnimationProgress(progress:Float):Void;#end
+	/**
+		SERVER
+		 Sets a player's eye angles
+	**/
+	#if SERVER @:native("setEyeAngles") public function setEyeAngles(ang:sf.type.Angle):Void;#end
+	/**
+		SHARED
+		 Returns the specified weapon or nil if the player doesn't have it
+	**/
+	@:native("getWeapon") public function getWeapon(wep:std.String):sf.type.Weapon;
+	/**
+		SHARED
+		 Returns the player's current team
+	**/
+	@:native("getTeam") public function getTeam():Float;
+	/**
+		SERVER
+		 Returns the number of seconds that the player has been timing out for
+	**/
+	#if SERVER @:native("getTimeoutSeconds") public function getTimeoutSeconds():Float;#end
+	/**
+		SHARED
+		 Returns true if the player is noclipped
+	**/
+	@:native("isNoclipped") public function isNoclipped():Bool;
+	/**
+		SHARED
+		 Returns the player's field of view
+	**/
+	@:native("getFOV") public function getFOV():Float;
+	/**
+		SHARED
+		 Returns the player's duck speed
+	**/
+	@:native("getDuckSpeed") public function getDuckSpeed():Float;
+	/**
+		CLIENT
+		 Returns whether the player is heard by the local player.
+	**/
+	#if CLIENT @:native("isSpeaking") public function isSpeaking():Bool;#end
+	/**
+		SERVER
+		 Returns true if the player is timing out
+	**/
+	#if SERVER @:native("isTimingOut") public function isTimingOut():Bool;#end
+	/**
+		CLIENT
+		 Sets the animation range
+	**/
+	#if CLIENT @:native("setAnimationRange") public function setAnimationRange(min:Float, max:Float):Void;#end
+	/**
+		CLIENT
+		 Gets the progress of the animation ranging 0-1
+	**/
+	#if CLIENT @:native("getAnimationProgress") public function getAnimationProgress():Float;#end
 	/**
 		SHARED
 		 Returns the player's UserID
@@ -68,79 +164,39 @@ extern class PlayerData {
 	@:native("getUserID") public function getUserID():Float;
 	/**
 		SHARED
-		 Returns whether the player is connected
+		 Returns the player's current view entity
 	**/
-	@:native("isConnected") public function isConnected():Bool;
+	@:native("getViewEntity") public function getViewEntity():sf.type.Entity;
 	/**
 		SHARED
-		 Returns whether the player belongs to a usergroup
+		 Returns whether the player is a super admin
 	**/
-	@:native("isUserGroup") public function isUserGroup(groupName:std.String):Bool;
+	@:native("isSuperAdmin") public function isSuperAdmin():Bool;
+	/**
+		SHARED
+		 Returns whether the player is crouching
+	**/
+	@:native("isCrouching") public function isCrouching():Bool;
 	/**
 		CLIENT
-		 Returns the voice volume of the player
+		 Sets the weight of the gesture animation in the given gesture slot
 	**/
-	#if CLIENT @:native("voiceVolume") public function voiceVolume():Float;#end
+	#if CLIENT @:native("setGestureWeight") public function setGestureWeight(?slot:Null<Float>, ?weight:Null<Float>):Void;#end
 	/**
 		CLIENT
-		 Sets the animation playback rate
+		 Returns whether the local player has muted the player
 	**/
-	#if CLIENT @:native("setAnimationRate") public function setAnimationRate(rate:Float):Void;#end
+	#if CLIENT @:native("isMuted") public function isMuted():Bool;#end
 	/**
 		SHARED
-		 Returns the name of the player's current team
+		 Returns a table of weapons the player is carrying
 	**/
-	@:native("getTeamName") public function getTeamName():std.String;
+	@:native("getWeapons") public function getWeapons():lua.Table<Dynamic,Dynamic>;
 	/**
 		SHARED
-		 Returns a table with information of what the player is looking at
+		 Returns whether or not the player is pushing the key.
 	**/
-	@:native("getEyeTrace") public function getEyeTrace():lua.Table<Dynamic,Dynamic>;
-	/**
-		SERVER
-		 Returns true if the player is timing out
-	**/
-	#if SERVER @:native("isTimingOut") public function isTimingOut():Bool;#end
-	/**
-		SHARED
-		 Returns the entity that the player is standing on
-	**/
-	@:native("getGroundEntity") public function getGroundEntity():sf.type.Entity;
-	/**
-		CLIENT
-		 Sets the animation progress
-	**/
-	#if CLIENT @:native("setAnimationProgress") public function setAnimationProgress(progress:Float):Void;#end
-	/**
-		SHARED
-		 Returns maximum armor capacity
-	**/
-	@:native("getMaxArmor") public function getMaxArmor():Float;
-	/**
-		SHARED
-		 Returns the player's aim vector
-	**/
-	@:native("getAimVector") public function getAimVector():sf.type.Vector;
-	/**
-		SHARED
-		 Returns whether the player is frozen
-	**/
-	@:native("isFrozen") public function isFrozen():Bool;
-	/**
-		SHARED
-		 Returns the player's maximum speed
-	**/
-	@:native("getMaxSpeed") public function getMaxSpeed():Float;
-	/**
-		CLIENT
-		 Resets the animation
-	**/
-	#if CLIENT @:native("resetAnimation") public function resetAnimation():Void;#end
-	/**
-		CLIENT
-		 Sets the animation bounce
-	**/
-	#if CLIENT @:native("setAnimationBounce") public function setAnimationBounce(bounce:Bool):Void;#end
+	@:native("keyDown") public function keyDown(key:Float):Bool;
 	/**
 		SHARED
 		 Returns the player's unique ID. Returns 1 in singleplayer.
@@ -150,116 +206,45 @@ extern class PlayerData {
 	**/
 	@:native("getUniqueID") public function getUniqueID():Float;
 	/**
-		SHARED
-		 Returns the player's jump power
-	**/
-	@:native("getJumpPower") public function getJumpPower():Float;
-	/**
 		SERVER
-		 Drops the players' weapon
+		 Returns the hitgroup where the player was last hit.
 	**/
-	#if SERVER @:native("dropWeapon") public function dropWeapon(weapon:Dynamic, ?target:Null<sf.type.Vector>, ?velocity:Null<sf.type.Vector>):Void;#end
-	/**
-		SHARED
-		 Returns whether the player's flashlight is on
-	**/
-	@:native("isFlashlightOn") public function isFlashlightOn():Bool;
-	/**
-		SHARED
-		 Returns whether the player is typing in their chat
-	**/
-	@:native("isTyping") public function isTyping():Bool;
-	/**
-		SERVER
-		 Returns the packet loss of the client
-	**/
-	#if SERVER @:native("getPacketLoss") public function getPacketLoss():Float;#end
-	/**
-		SHARED
-		 Returns a table of weapons the player is carrying
-	**/
-	@:native("getWeapons") public function getWeapons():lua.Table<Dynamic,Dynamic>;
-	/**
-		SHARED
-		 Gets the amount of ammo the player has.
-	**/
-	@:native("getAmmoCount") public function getAmmoCount(idOrName:Dynamic):Float;
-	/**
-		SHARED
-		 Returns the specified weapon or nil if the player doesn't have it
-	**/
-	@:native("getWeapon") public function getWeapon(wep:std.String):sf.type.Weapon;
-	/**
-		SHARED
-		 Returns whether the player is an admin
-	**/
-	@:native("isAdmin") public function isAdmin():Bool;
-	/**
-		SHARED
-		 Returns the player's name
-	**/
-	@:native("getName") public function getName():std.String;
-	/**
-		CLIENT
-		 Resets gesture animations on a player
-	**/
-	#if CLIENT @:native("resetGesture") public function resetGesture(?slot:Null<Float>):Void;#end
-	/**
-		SHARED
-		 Returns whether the player is sprinting
-	**/
-	@:native("isSprinting") public function isSprinting():Bool;
-	/**
-		SHARED
-		 Returns the player's shoot position
-	**/
-	@:native("getShootPos") public function getShootPos():sf.type.Vector;
+	#if SERVER @:native("lastHitGroup") public function lastHitGroup():Float;#end
 	/**
 		SERVER
 		 Lets you change the size of yourself if the server has sf_permissions_entity_owneraccess 1
 	**/
 	#if SERVER @:native("setModelScale") public function setModelScale(scale:Float):Void;#end
 	/**
-		SHARED
-		 Returns the player's running speed
-	**/
-	@:native("getRunSpeed") public function getRunSpeed():Float;
-	/**
-		SHARED
-		 Returns the player's current view entity
-	**/
-	@:native("getViewEntity") public function getViewEntity():sf.type.Entity;
-	/**
-		SHARED
-		 Returns the player's field of view
-	**/
-	@:native("getFOV") public function getFOV():Float;
-	/**
-		CLIENT
-		 Sets the animation loop
-	**/
-	#if CLIENT @:native("setAnimationLoop") public function setAnimationLoop(loop:Bool):Void;#end
-	/**
-		SHARED
-		 Returns whether or not the player is pushing the key.
-	**/
-	@:native("keyDown") public function keyDown(key:Float):Bool;
-	/**
-		SHARED
-		 Returns the player's view model
-		 In the Client realm, other players' viewmodels are not available unless they are being spectated
-	**/
-	@:native("getViewModel") public function getViewModel():sf.type.Entity;
-	/**
 		CLIENT
 		 Returns the relationship of the player to the local client
 	**/
 	#if CLIENT @:native("getFriendStatus") public function getFriendStatus():std.String;#end
 	/**
-		SERVER
-		 Returns the hitgroup where the player was last hit.
+		SHARED
+		 Returns the player's current ping
 	**/
-	#if SERVER @:native("lastHitGroup") public function lastHitGroup():Float;#end
+	@:native("getPing") public function getPing():Float;
+	/**
+		SERVER
+		 Sets the view entity of the player. Only works if they are linked to a hud.
+	**/
+	#if SERVER @:native("setViewEntity") public function setViewEntity(ent:sf.type.Entity):Void;#end
+	/**
+		SHARED
+		 Returns whether the player belongs to a usergroup
+	**/
+	@:native("isUserGroup") public function isUserGroup(groupName:std.String):Bool;
+	/**
+		SHARED
+		 Returns whether the player is frozen
+	**/
+	@:native("isFrozen") public function isFrozen():Bool;
+	/**
+		CLIENT
+		 Sets the animation bounce
+	**/
+	#if CLIENT @:native("setAnimationBounce") public function setAnimationBounce(bounce:Bool):Void;#end
 	/**
 		SERVER
 		 Forces the player to say the first argument
@@ -267,90 +252,60 @@ extern class PlayerData {
 	**/
 	#if SERVER @:native("say") public function say(text:std.String, ?teamOnly:Null<Bool>):Void;#end
 	/**
-		SHARED
-		 Returns whether the player is in a vehicle
+		SERVER
+		 Drops the players' weapon
 	**/
-	@:native("inVehicle") public function inVehicle():Bool;
+	#if SERVER @:native("dropWeapon") public function dropWeapon(weapon:Dynamic, ?target:Null<sf.type.Vector>, ?velocity:Null<sf.type.Vector>):Void;#end
+	/**
+		SHARED
+		 Gets the amount of ammo the player has.
+	**/
+	@:native("getAmmoCount") public function getAmmoCount(idOrName:Dynamic):Float;
+	/**
+		SHARED
+		 Returns the player's shoot position
+	**/
+	@:native("getShootPos") public function getShootPos():sf.type.Vector;
+	/**
+		CLIENT
+		 Returns the voice volume of the player
+	**/
+	#if CLIENT @:native("voiceVolume") public function voiceVolume():Float;#end
+	/**
+		SHARED
+		 Returns whether the player's flashlight is on
+	**/
+	@:native("isFlashlightOn") public function isFlashlightOn():Bool;
+	/**
+		CLIENT
+		 Sets the animation time
+	**/
+	#if CLIENT @:native("setAnimationTime") public function setAnimationTime(time:Float):Void;#end
+	/**
+		SHARED
+		 Returns maximum armor capacity
+	**/
+	@:native("getMaxArmor") public function getMaxArmor():Float;
 	/**
 		CLIENT
 		 Sets the animation activity
 	**/
 	#if CLIENT @:native("setAnimationActivity") public function setAnimationActivity(?activity:Dynamic):Void;#end
 	/**
-		SHARED
-		 Returns whether the player is alive
-	**/
-	@:native("isAlive") public function isAlive():Bool;
-	/**
 		CLIENT
-		 Sets the animation range
+		 Sets the animation audo advance
 	**/
-	#if CLIENT @:native("setAnimationRange") public function setAnimationRange(min:Float, max:Float):Void;#end
-	/**
-		CLIENT
-		 Plays gesture animations on a player
-	**/
-	#if CLIENT @:native("playGesture") public function playGesture(animation:Dynamic, ?loop:Null<Bool>, ?slot:Null<Float>, ?weight:Null<Float>):Void;#end
+	#if CLIENT @:native("setAnimationAutoAdvance") public function setAnimationAutoAdvance(auto_advance:Bool):Void;#end
 	/**
 		SHARED
-		 Returns the player's current ping
+		 Returns the player's running speed
 	**/
-	@:native("getPing") public function getPing():Float;
+	@:native("getRunSpeed") public function getRunSpeed():Float;
 	/**
 		SHARED
-		 Returns whether the player is a bot
+		 Returns the player's aim vector
 	**/
-	@:native("isBot") public function isBot():Bool;
-	/**
-		SHARED
-		 Returns the amount of deaths of the player
-	**/
-	@:native("getDeaths") public function getDeaths():Float;
-	/**
-		SHARED
-		 Returns the player's duck speed
-	**/
-	@:native("getDuckSpeed") public function getDuckSpeed():Float;
-	/**
-		SERVER
-		 Returns the time in seconds since the player connected
-	**/
-	#if SERVER @:native("getTimeConnected") public function getTimeConnected():Float;#end
-	/**
-		SHARED
-		 Returns the entity the player is currently using, like func_tank mounted turrets or +use prop pickups.
-	**/
-	@:native("getEntityInUse") public function getEntityInUse():sf.type.Entity;
-	/**
-		SHARED
-		 Returns the vehicle the player is driving
-	**/
-	@:native("getVehicle") public function getVehicle():sf.type.Vehicle;
-	/**
-		SHARED
-		 Returns the amount of kills of the player
-	**/
-	@:native("getFrags") public function getFrags():Float;
-	/**
-		SHARED
-		 Returns the player's current team
-	**/
-	@:native("getTeam") public function getTeam():Float;
-	/**
-		SHARED
-		 Returns the player's SteamID
-	**/
-	@:native("getSteamID") public function getSteamID():std.String;
-	/**
-		SHARED
-		 Returns the players armor
-	**/
-	@:native("getArmor") public function getArmor():Float;
-	/**
-		SERVER
-		 Returns the number of seconds that the player has been timing out for
-	**/
-	#if SERVER @:native("getTimeoutSeconds") public function getTimeoutSeconds():Float;#end
+	@:native("getAimVector") public function getAimVector():sf.type.Vector;
 	/**
 		SHARED
 		 Returns the player's SteamID64 / Community ID
@@ -360,30 +315,75 @@ extern class PlayerData {
 	**/
 	@:native("getSteamID64") public function getSteamID64():std.String;
 	/**
-		CLIENT
-		 Returns whether the player is heard by the local player.
+		SHARED
+		 Returns the camera punch offset angle
 	**/
-	#if CLIENT @:native("isSpeaking") public function isSpeaking():Bool;#end
+	@:native("getViewPunchAngles") public function getViewPunchAngles():sf.type.Angle;
 	/**
 		CLIENT
-		 Sets the animation audo advance
+		 Resets the animation
 	**/
-	#if CLIENT @:native("setAnimationAutoAdvance") public function setAnimationAutoAdvance(auto:Bool):Void;#end
+	#if CLIENT @:native("resetAnimation") public function resetAnimation():Void;#end
 	/**
-		SERVER
-		 Sets the view entity of the player. Only works if they are linked to a hud.
+		SHARED
+		 Returns the player's SteamID
 	**/
-	#if SERVER @:native("setViewEntity") public function setViewEntity(ent:sf.type.Entity):Void;#end
+	@:native("getSteamID") public function getSteamID():std.String;
+	/**
+		CLIENT
+		 Plays gesture animations on a player
+	**/
+	#if CLIENT @:native("playGesture") public function playGesture(animation:Dynamic, ?loop:Null<Bool>, ?slot:Null<Float>, ?weight:Null<Float>):Void;#end
+	/**
+		SHARED
+		 Returns the amount of deaths of the player
+	**/
+	@:native("getDeaths") public function getDeaths():Float;
+	/**
+		SHARED
+		 Returns the vehicle the player is driving
+	**/
+	@:native("getVehicle") public function getVehicle():sf.type.Vehicle;
 	/**
 		SHARED
 		 Returns the name of the player's active weapon
 	**/
 	@:native("getActiveWeapon") public function getActiveWeapon():sf.type.Weapon;
 	/**
-		CLIENT
-		 Sets the weight of the gesture animation in the given gesture slot
+		SHARED
+		 Returns the player's maximum speed
 	**/
-	#if CLIENT @:native("setGestureWeight") public function setGestureWeight(?slot:Null<Float>, ?weight:Null<Float>):Void;#end
+	@:native("getMaxSpeed") public function getMaxSpeed():Float;
+	/**
+		CLIENT
+		 Resets gesture animations on a player
+	**/
+	#if CLIENT @:native("resetGesture") public function resetGesture(?slot:Null<Float>):Void;#end
+	/**
+		CLIENT
+		 Gets the animation time
+	**/
+	#if CLIENT @:native("getAnimationTime") public function getAnimationTime():Float;#end
+	/**
+		SHARED
+		 Returns whether the player is a bot
+	**/
+	@:native("isBot") public function isBot():Bool;
+	/**
+		SHARED
+		 Returns whether the player is sprinting
+	**/
+	@:native("isSprinting") public function isSprinting():Bool;
+	/**
+		SHARED
+		 Returns the name of the player's current team
+	**/
+	@:native("getTeamName") public function getTeamName():std.String;
+	/**
+		SHARED
+		 Returns whether the player is connected
+	**/
+	@:native("isConnected") public function isConnected():Bool;
 }
 
 @:forward

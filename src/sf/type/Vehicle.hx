@@ -3,14 +3,14 @@ package sf.type;
 extern class VehicleData {
 	/**
 		SERVER
-		 Returns the driver of the vehicle
+		 Strips weapons of the driver
 	**/
-	#if SERVER @:native("getDriver") public function getDriver():sf.type.Player;#end
+	#if SERVER @:native("stripDriver") public function stripDriver(?_class:Null<std.String>):Void;#end
 	/**
 		SERVER
-		 Returns a passenger of a vehicle
+		 Will unlock the vehicle.
 	**/
-	#if SERVER @:native("getPassenger") public function getPassenger(n:Float):sf.type.Player;#end
+	#if SERVER @:native("unlock") public function unlock():Void;#end
 	/**
 		SHARED
 		 Turns a vehicle into a string.
@@ -18,14 +18,9 @@ extern class VehicleData {
 	@:native("__tostring") public function __tostring():std.String;
 	/**
 		SERVER
-		 Will unlock the vehicle.
+		 Returns a passenger of a vehicle
 	**/
-	#if SERVER @:native("unlock") public function unlock():Void;#end
-	/**
-		SERVER
-		 Will lock the vehicle preventing players from entering or exiting the vehicle.
-	**/
-	#if SERVER @:native("lock") public function lock():Void;#end
+	#if SERVER @:native("getPassenger") public function getPassenger(n:Float):sf.type.Player;#end
 	/**
 		SERVER
 		 Ejects the driver of the vehicle
@@ -38,9 +33,14 @@ extern class VehicleData {
 	#if SERVER @:native("killDriver") public function killDriver():Void;#end
 	/**
 		SERVER
-		 Strips weapons of the driver
+		 Returns the driver of the vehicle
 	**/
-	#if SERVER @:native("stripDriver") public function stripDriver(?_class:Null<std.String>):Void;#end
+	#if SERVER @:native("getDriver") public function getDriver():sf.type.Player;#end
+	/**
+		SERVER
+		 Will lock the vehicle preventing players from entering or exiting the vehicle.
+	**/
+	#if SERVER @:native("lock") public function lock():Void;#end
 }
 
 @:forward

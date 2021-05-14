@@ -3,14 +3,14 @@ package sf.type;
 extern class MeshData {
 	/**
 		CLIENT
-		 Frees the mesh from memory
-	**/
-	#if CLIENT @:native("destroy") public function destroy():Void;#end
-	/**
-		CLIENT
 		 Draws the mesh. Must be in a 3D rendering context.
 	**/
 	#if CLIENT @:native("draw") public function draw():Void;#end
+	/**
+		CLIENT
+		 Frees the mesh from memory
+	**/
+	#if CLIENT @:native("destroy") public function destroy():Void;#end
 }
 
 @:forward

@@ -3,82 +3,14 @@ package sf.type;
 extern class QuaternionData {
 	/**
 		SHARED
-		 Converts quaternion to a matrix
+		 Returns the euler angle of rotation in degrees
 	**/
-	@:native("getMatrix") public function getMatrix(?Optional:Null<Bool>):sf.type.VMatrix;
+	@:native("getEulerAngle") public function getEulerAngle():sf.type.Angle;
 	/**
 		SHARED
-		 Gets the quaternion representing rotation contained within an angle between 0 and 180 degrees
+		 Returns conjugate of the quaternion
 	**/
-	@:native("getMod") public function getMod():sf.type.Quaternion;
-	/**
-		SHARED
-		 Calculates forward direction of the quaternion
-	**/
-	@:native("getForward") public function getForward():sf.type.Vector;
-	/**
-		SHARED
-		 Returns dot product of two quaternions
-	**/
-	@:native("dot") public function dot(quat:sf.type.Quaternion):Float;
-	/**
-		SHARED
-		 Calculates right direction of the quaternion
-	**/
-	@:native("getRight") public function getRight():sf.type.Vector;
-	/**
-		SHARED
-		 Returns the rotation vector - rotation axis where magnitude is the angle of rotation in degrees
-	**/
-	@:native("getRotationVector") public function getRotationVector():sf.type.Vector;
-	/**
-		SHARED
-		 Involution metamethod
-	**/
-	@:native("__pow") public function __pow(lhs:Dynamic, rhs:Dynamic):sf.type.Quaternion;
-	/**
-		SHARED
-		 Sets R (real) component of the quaternion and returns self after modification
-	**/
-	@:native("setR") public function setR(r:Float):sf.type.Quaternion;
-	/**
-		SHARED
-		 Set components of the quaternion
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("pack") public function pack(r:Float, i:Float, j:Float, k:Float):Void;
-	/**
-		SHARED
-		 Returns new normalized quaternion
-	**/
-	@:native("getNormalized") public function getNormalized():sf.type.Quaternion;
-	/**
-		SHARED
-		 Sets K component of the quaternion and returns self after modification
-	**/
-	@:native("setK") public function setK(k:Float):sf.type.Quaternion;
-	/**
-		SHARED
-		 Calculates natural logarithm of the quaternion.
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("log") public function log():Void;
-	/**
-		SHARED
-		 Calculates inverse of the quaternion
-	**/
-	@:native("getInverse") public function getInverse():sf.type.Quaternion;
-	/**
-		SHARED
-		 Returns the angle of rotation in degrees
-	**/
-	@:native("getRotationAngle") public function getRotationAngle(?full:Null<Bool>):Float;
-	/**
-		SHARED
-		 Copies components of the second quaternion to the first quaternion.
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("set") public function set(quat:sf.type.Quaternion):Void;
+	@:native("getConjugate") public function getConjugate():sf.type.Quaternion;
 	/**
 		SHARED
 		 Contains quaternion's represented rotation within an angle between 0 and 180 degrees.
@@ -87,14 +19,26 @@ extern class QuaternionData {
 	@:native("mod") public function mod():Void;
 	/**
 		SHARED
+		 Copies components of the second quaternion to the first quaternion.
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("set") public function set(quat:sf.type.Quaternion):Void;
+	/**
+		SHARED
+		 Calculates natural logarithm of the quaternion.
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("log") public function log():Void;
+	/**
+		SHARED
+		 Calculates right direction of the quaternion
+	**/
+	@:native("getRight") public function getRight():sf.type.Vector;
+	/**
+		SHARED
 		 Sets I component of the quaternion and returns self after modification
 	**/
 	@:native("setI") public function setI(i:Float):sf.type.Quaternion;
-	/**
-		SHARED
-		 Converts quaternion to a vector by dropping the R (real) component
-	**/
-	@:native("getVector") public function getVector():sf.type.Vector;
 	/**
 		SHARED
 		 Raises Euler's constant e to the quaternion's power
@@ -107,14 +51,29 @@ extern class QuaternionData {
 	@:native("setJ") public function setJ(j:Float):sf.type.Quaternion;
 	/**
 		SHARED
-		 Creates a copy of the quaternion
+		 Returns dot product of two quaternions
 	**/
-	@:native("clone") public function clone():sf.type.Quaternion;
+	@:native("dot") public function dot(quat:sf.type.Quaternion):Float;
 	/**
 		SHARED
-		 Returns the axis of rotation
+		 Sets K component of the quaternion and returns self after modification
 	**/
-	@:native("getRotationAxis") public function getRotationAxis():sf.type.Vector;
+	@:native("setK") public function setK(k:Float):sf.type.Quaternion;
+	/**
+		SHARED
+		 Tostring metamethod
+	**/
+	@:native("__tostring") public function __tostring(q:sf.type.Quaternion):std.String;
+	/**
+		SHARED
+		 Gets the quaternion representing rotation contained within an angle between 0 and 180 degrees
+	**/
+	@:native("getMod") public function getMod():sf.type.Quaternion;
+	/**
+		SHARED
+		 Returns absolute value of the quaternion
+	**/
+	@:native("getAbsolute") public function getAbsolute():sf.type.Vector;
 	/**
 		SHARED
 		 Normalizes the quaternion.
@@ -123,14 +82,19 @@ extern class QuaternionData {
 	@:native("normalize") public function normalize():Void;
 	/**
 		SHARED
+		 Returns new normalized quaternion
+	**/
+	@:native("getNormalized") public function getNormalized():sf.type.Quaternion;
+	/**
+		SHARED
 		 Calculates natural logarithm of the quaternion
 	**/
 	@:native("getLog") public function getLog():sf.type.Quaternion;
 	/**
 		SHARED
-		 Tostring metamethod
+		 Calculates forward direction of the quaternion
 	**/
-	@:native("__tostring") public function __tostring(q:sf.type.Quaternion):std.String;
+	@:native("getForward") public function getForward():sf.type.Vector;
 	/**
 		SHARED
 		 Calculates inverse of the quaternon.
@@ -139,14 +103,34 @@ extern class QuaternionData {
 	@:native("inverse") public function inverse():Void;
 	/**
 		SHARED
-		 Returns absolute value of the quaternion
+		 Sets R (real) component of the quaternion and returns self after modification
 	**/
-	@:native("getAbsolute") public function getAbsolute():sf.type.Vector;
+	@:native("setR") public function setR(r:Float):sf.type.Quaternion;
 	/**
 		SHARED
 		 Calculates upward direction of the quaternion
 	**/
 	@:native("getUp") public function getUp():sf.type.Vector;
+	/**
+		SHARED
+		 Returns components of the quaternion
+	**/
+	@:native("unpack") public function unpack():Float;
+	/**
+		SHARED
+		 Returns the axis of rotation
+	**/
+	@:native("getRotationAxis") public function getRotationAxis():sf.type.Vector;
+	/**
+		SHARED
+		 Converts quaternion to a matrix
+	**/
+	@:native("getMatrix") public function getMatrix(?Optional:Null<Bool>):sf.type.VMatrix;
+	/**
+		SHARED
+		 Returns the rotation vector - rotation axis where magnitude is the angle of rotation in degrees
+	**/
+	@:native("getRotationVector") public function getRotationVector():sf.type.Vector;
 	/**
 		SHARED
 		 Conjugates the quaternion.
@@ -155,9 +139,25 @@ extern class QuaternionData {
 	@:native("conjugate") public function conjugate():Void;
 	/**
 		SHARED
-		 Returns components of the quaternion
+		 Involution metamethod
 	**/
-	@:native("unpack") public function unpack():Float;
+	@:native("__pow") public function __pow(lhs:Dynamic, rhs:Dynamic):sf.type.Quaternion;
+	/**
+		SHARED
+		 Set components of the quaternion
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("pack") public function pack(r:Float, i:Float, j:Float, k:Float):Void;
+	/**
+		SHARED
+		 Converts quaternion to a vector by dropping the R (real) component
+	**/
+	@:native("getVector") public function getVector():sf.type.Vector;
+	/**
+		SHARED
+		 Calculates inverse of the quaternion
+	**/
+	@:native("getInverse") public function getInverse():sf.type.Quaternion;
 	/**
 		SHARED
 		 Raises Euler's constant e to the quaternion's power.
@@ -166,23 +166,18 @@ extern class QuaternionData {
 	@:native("exp") public function exp():Void;
 	/**
 		SHARED
-		 Returns the euler angle of rotation in degrees
+		 Creates a copy of the quaternion
 	**/
-	@:native("getEulerAngle") public function getEulerAngle():sf.type.Angle;
+	@:native("clone") public function clone():sf.type.Quaternion;
 	/**
 		SHARED
-		 Returns conjugate of the quaternion
+		 Returns the angle of rotation in degrees
 	**/
-	@:native("getConjugate") public function getConjugate():sf.type.Quaternion;
+	@:native("getRotationAngle") public function getRotationAngle(?full:Null<Bool>):Float;
 }
 
 @:forward
 extern abstract Quaternion(QuaternionData) {
-	/**
-		SHARED
-		 Multiplication metamethod
-	**/
-	@:op(A*B) public function __mul(A:Any):Any;
 	/**
 		SHARED
 		 Subtraction metamethod
@@ -190,14 +185,14 @@ extern abstract Quaternion(QuaternionData) {
 	@:op(A-B) public function __sub(A:Any):Any;
 	/**
 		SHARED
-		 Unary minus metamethod
+		 Addition metamethod
 	**/
-	@:op(-A) public function __unm():Any;
+	@:op(A+B) public function __add(A:Any):Any;
 	/**
 		SHARED
-		 Newindex metamethod
+		 Multiplication metamethod
 	**/
-	@:op([]) public function __newindex(A:Any, B:Any):Any;
+	@:op(A*B) public function __mul(A:Any):Any;
 	/**
 		SHARED
 		 Equivalence metamethod
@@ -210,14 +205,19 @@ extern abstract Quaternion(QuaternionData) {
 	@:op(A/B) public function __div(A:Any):Any;
 	/**
 		SHARED
+		 Newindex metamethod
+	**/
+	@:op([]) public function __newindex(A:Any, B:Any):Any;
+	/**
+		SHARED
 		 Index metamethod
 		 Can be indexed with: 1, 2, 3, 4, r, i, j, k, rr, ri, rj, rk, rrr, rijk, kjir, etc. Numerical lookup is the most efficient
 	**/
 	@:op([]) public function __index(A:Any):Any;
 	/**
 		SHARED
-		 Addition metamethod
+		 Unary minus metamethod
 	**/
-	@:op(A+B) public function __add(A:Any):Any;
+	@:op(-A) public function __unm():Any;
 }
 

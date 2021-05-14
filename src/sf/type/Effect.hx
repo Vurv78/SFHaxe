@@ -3,39 +3,10 @@ package sf.type;
 extern class EffectData {
 	/**
 		SHARED
-		 Sets the effect's attachment
+		 Sets the effect's start pos
+		 Limited to world bounds (+-16386 on every axis) and has horrible networking precision. (17 bit float per component)
 	**/
-	@:native("setAttachment") public function setAttachment(attachment:Float):Void;
-	/**
-		SHARED
-		 Sets the effect's radius
-	**/
-	@:native("setRadius") public function setRadius(radius:Float):Void;
-	/**
-		SHARED
-		 Returns the effect's attachment
-	**/
-	@:native("getAttachment") public function getAttachment():Float;
-	/**
-		SHARED
-		 Returns the effect's radius
-	**/
-	@:native("getRadius") public function getRadius():Float;
-	/**
-		SHARED
-		 Returns the effect's scale
-	**/
-	@:native("getScale") public function getScale():Float;
-	/**
-		SHARED
-		 Returns the effect's surface prop
-	**/
-	@:native("getSurfaceProp") public function getSurfaceProp():Float;
-	/**
-		SHARED
-		 Returns the effect's flags
-	**/
-	@:native("getFlags") public function getFlags():Float;
+	@:native("setStart") public function setStart(start:sf.type.Vector):Void;
 	/**
 		SHARED
 		 Sets the effect's color
@@ -44,14 +15,79 @@ extern class EffectData {
 	@:native("setColor") public function setColor(color:Float):Void;
 	/**
 		SHARED
+		 Sets the effect's angles
+	**/
+	@:native("setAngles") public function setAngles(ang:sf.type.Angle):Void;
+	/**
+		SHARED
+		 Sets the effect's entity
+	**/
+	@:native("setEntity") public function setEntity(ent:sf.type.Entity):Void;
+	/**
+		SHARED
+		 Sets the effect's flags
+	**/
+	@:native("setFlags") public function setFlags(flags:Float):Void;
+	/**
+		SHARED
+		 Sets the effect's attachment
+	**/
+	@:native("setAttachment") public function setAttachment(attachment:Float):Void;
+	/**
+		SHARED
+		 Sets the effect's scale
+	**/
+	@:native("setScale") public function setScale(scale:Float):Void;
+	/**
+		SHARED
+		 Returns the effect's radius
+	**/
+	@:native("getRadius") public function getRadius():Float;
+	/**
+		SHARED
 		 Sets the effect's origin
 	**/
 	@:native("setOrigin") public function setOrigin(origin:sf.type.Vector):Void;
 	/**
 		SHARED
+		 Sets the effect's entity index
+	**/
+	@:native("setEntIndex") public function setEntIndex(index:Float):Void;
+	/**
+		SHARED
 		 Sets the effect's material index
 	**/
 	@:native("setMaterialIndex") public function setMaterialIndex(mat:Float):Void;
+	/**
+		SHARED
+		 Sets the effect's normal
+	**/
+	@:native("setNormal") public function setNormal(normal:sf.type.Vector):Void;
+	/**
+		SHARED
+		 Sets the effect's damage type
+	**/
+	@:native("setDamageType") public function setDamageType(dmgtype:Float):Void;
+	/**
+		SHARED
+		 Returns the effect's start position
+	**/
+	@:native("getStart") public function getStart():sf.type.Vector;
+	/**
+		SHARED
+		 Returns byte which represents the color of the effect.
+	**/
+	@:native("getColor") public function getColor():Float;
+	/**
+		SHARED
+		 Returns the effect's hitbox ID
+	**/
+	@:native("getHitBox") public function getHitBox():Float;
+	/**
+		SHARED
+		 Sets the effect's magnitude
+	**/
+	@:native("setMagnitude") public function setMagnitude(magnitude:Float):Void;
 	/**
 		SHARED
 		 Sets the effect's surface property
@@ -60,60 +96,24 @@ extern class EffectData {
 	@:native("setSurfaceProp") public function setSurfaceProp(prop:Float):Void;
 	/**
 		SHARED
-		 Returns the effect's start position
+		 Returns the effect's flags
 	**/
-	@:native("getStart") public function getStart():sf.type.Vector;
+	@:native("getFlags") public function getFlags():Float;
 	/**
 		SHARED
-		 Sets the effect's hitbox
+		 Returns the effect's scale
 	**/
-	@:native("setHitBox") public function setHitBox(hitbox:Float):Void;
+	@:native("getScale") public function getScale():Float;
 	/**
 		SHARED
-		 Sets the effect's normal
+		 Sets the effect's radius
 	**/
-	@:native("setNormal") public function setNormal(normal:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Returns byte which represents the color of the effect.
-	**/
-	@:native("getColor") public function getColor():Float;
-	/**
-		SHARED
-		 Returns the effect's origin
-	**/
-	@:native("getOrigin") public function getOrigin():sf.type.Vector;
-	/**
-		SHARED
-		 Sets the effect's entity index
-	**/
-	@:native("setEntIndex") public function setEntIndex(index:Float):Void;
-	/**
-		SHARED
-		 Sets the effect's start pos
-		 Limited to world bounds (+-16386 on every axis) and has horrible networking precision. (17 bit float per component)
-	**/
-	@:native("setStart") public function setStart(start:sf.type.Vector):Void;
+	@:native("setRadius") public function setRadius(radius:Float):Void;
 	/**
 		SHARED
 		 Plays the effect
 	**/
-	@:native("play") public function play(eff:sf.type.Effect):Void;
-	/**
-		SHARED
-		 Sets the effect's magnitude
-	**/
-	@:native("setMagnitude") public function setMagnitude(magnitude:Float):Void;
-	/**
-		SHARED
-		 Sets the effect's angles
-	**/
-	@:native("setAngles") public function setAngles(ang:sf.type.Angle):Void;
-	/**
-		SHARED
-		 Returns the effect's entity
-	**/
-	@:native("getEntity") public function getEntity():sf.type.Entity;
+	@:native("play") public function play(eff:std.String):Void;
 	/**
 		SHARED
 		 Returns the effect's material index
@@ -121,34 +121,29 @@ extern class EffectData {
 	@:native("getMaterialIndex") public function getMaterialIndex():Float;
 	/**
 		SHARED
-		 Returns the effect's hitbox ID
+		 Returns the effect's angle
 	**/
-	@:native("getHitBox") public function getHitBox():Float;
+	@:native("getAngles") public function getAngles():sf.type.Angle;
 	/**
 		SHARED
-		 Sets the effect's damage type
+		 Returns the effect's attachment
 	**/
-	@:native("setDamageType") public function setDamageType(dmgtype:Float):Void;
+	@:native("getAttachment") public function getAttachment():Float;
 	/**
 		SHARED
-		 Returns the effect's normal
+		 Returns the effect's entity
 	**/
-	@:native("getNormal") public function getNormal():sf.type.Vector;
+	@:native("getEntity") public function getEntity():sf.type.Entity;
 	/**
 		SHARED
-		 Returns the effect's damagetype
+		 Sets the effect's hitbox
 	**/
-	@:native("getDamageType") public function getDamageType():Float;
+	@:native("setHitBox") public function setHitBox(hitbox:Float):Void;
 	/**
 		SHARED
-		 Sets the effect's scale
+		 Returns the effect's surface prop
 	**/
-	@:native("setScale") public function setScale(scale:Float):Void;
-	/**
-		SHARED
-		 Sets the effect's flags
-	**/
-	@:native("setFlags") public function setFlags(flags:Float):Void;
+	@:native("getSurfaceProp") public function getSurfaceProp():Float;
 	/**
 		SHARED
 		 Returns the effect's magnitude
@@ -156,19 +151,24 @@ extern class EffectData {
 	@:native("getMagnitude") public function getMagnitude():Float;
 	/**
 		SHARED
+		 Returns the effect's origin
+	**/
+	@:native("getOrigin") public function getOrigin():sf.type.Vector;
+	/**
+		SHARED
+		 Returns the effect's normal
+	**/
+	@:native("getNormal") public function getNormal():sf.type.Vector;
+	/**
+		SHARED
 		 Returns the effect's entindex
 	**/
 	@:native("getEntIndex") public function getEntIndex():Float;
 	/**
 		SHARED
-		 Returns the effect's angle
+		 Returns the effect's damagetype
 	**/
-	@:native("getAngles") public function getAngles():sf.type.Angle;
-	/**
-		SHARED
-		 Sets the effect's entity
-	**/
-	@:native("setEntity") public function setEntity(ent:sf.type.Entity):Void;
+	@:native("getDamageType") public function getDamageType():Float;
 }
 
 @:forward

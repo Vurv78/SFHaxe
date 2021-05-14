@@ -3,114 +3,15 @@ package sf.type;
 extern class VMatrixData {
 	/**
 		SHARED
-		 Sets the right direction of the matrix. Negated second column
+		 Initializes the matrix as Identity matrix
 		 Self-Modifies. Does not return anything
 	**/
-	@:native("setRight") public function setRight(right:sf.type.Vector):Void;
+	@:native("setIdentity") public function setIdentity():Void;
 	/**
 		SHARED
-		 Inverts the matrix. Inverting the matrix will fail if its determinant is 0 or close to 0
-		 Self-Modifies.
+		 Returns the input matrix rotated by an axis
 	**/
-	@:native("invert") public function invert():Bool;
-	/**
-		SHARED
-		 Returns an inverted matrix. Inverting the matrix will fail if its determinant is 0 or close to 0
-	**/
-	@:native("getInverse") public function getInverse():sf.type.VMatrix;
-	/**
-		SHARED
-		 Sets the forward direction of the matrix. First column
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("setForward") public function setForward(forward:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Returns angles
-	**/
-	@:native("getAngles") public function getAngles():sf.type.Angle;
-	/**
-		SHARED
-		 Returns scale
-	**/
-	@:native("getScale") public function getScale():sf.type.Vector;
-	/**
-		SHARED
-		 Returns forward vector of matrix. First matrix column
-	**/
-	@:native("getForward") public function getForward():sf.type.Vector;
-	/**
-		SHARED
-		 Sets the rotation or the matrix to the rotation by an axis and angle
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("setAxisAngle") public function setAxisAngle(axis:sf.type.Vector, angle:Float):Void;
-	/**
-		SHARED
-		 Returns a specific field in the matrix
-	**/
-	@:native("getField") public function getField(row:Float, column:Float):Float;
-	/**
-		SHARED
-		 Copies the values from the second matrix to the first matrix.
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("set") public function set(src:sf.type.VMatrix):Void;
-	/**
-		SHARED
-		 Translate the matrix
-	**/
-	@:native("translate") public function translate(vec:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Returns right vector of matrix. Negated second matrix column
-	**/
-	@:native("getRight") public function getRight():sf.type.Vector;
-	/**
-		SHARED
-		 Sets the translation
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("setTranslation") public function setTranslation(vec:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Inverts the matrix efficiently for translations and rotations
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("invertTR") public function invertTR():Void;
-	/**
-		SHARED
-		 Returns whether the matrix is a rotation matrix or not. Checks if the forward, right and up vectors are orthogonal and normalized.
-	**/
-	@:native("isRotationMatrix") public function isRotationMatrix():Bool;
-	/**
-		SHARED
-		 Rotate the matrix
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("rotate") public function rotate(ang:sf.type.Angle):Void;
-	/**
-		SHARED
-		 Scale the matrix
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("scale") public function scale(vec:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Sets the scale
-		 Self-Modifies. Does not return anything
-	**/
-	@:native("setScale") public function setScale(vec:sf.type.Vector):Void;
-	/**
-		SHARED
-		 Returns an inverted matrix. Efficiently for translations and rotations
-	**/
-	@:native("getInverseTR") public function getInverseTR():sf.type.VMatrix;
-	/**
-		SHARED
-		 Returns whether the matrix is equal to Identity matrix or not
-	**/
-	@:native("isIdentity") public function isIdentity():Bool;
+	@:native("getRotatedAroundAxis") public function getRotatedAroundAxis(axis:sf.type.Vector, ang:Float):sf.type.VMatrix;
 	/**
 		SHARED
 		 Sets the angles
@@ -119,25 +20,81 @@ extern class VMatrixData {
 	@:native("setAngles") public function setAngles(ang:sf.type.Angle):Void;
 	/**
 		SHARED
-		 Copies The matrix and returns a new matrix
-	**/
-	@:native("clone") public function clone():sf.type.VMatrix;
-	/**
-		SHARED
-		 Initializes the matrix as Identity matrix
+		 Copies the values from the second matrix to the first matrix.
 		 Self-Modifies. Does not return anything
 	**/
-	@:native("setIdentity") public function setIdentity():Void;
+	@:native("set") public function set(src:sf.type.VMatrix):Void;
 	/**
 		SHARED
-		 Converts the matrix to a 4x4 table
+		 Sets the forward direction of the matrix. First column
+		 Self-Modifies. Does not return anything
 	**/
-	@:native("toTable") public function toTable():lua.Table<Dynamic,Dynamic>;
+	@:native("setForward") public function setForward(forward:sf.type.Vector):Void;
 	/**
 		SHARED
-		 Returns translation
+		 Returns a specific field in the matrix
 	**/
-	@:native("getTranslation") public function getTranslation():sf.type.Vector;
+	@:native("getField") public function getField(row:Float, column:Float):Float;
+	/**
+		SHARED
+		 Returns right vector of matrix. Negated second matrix column
+	**/
+	@:native("getRight") public function getRight():sf.type.Vector;
+	/**
+		SHARED
+		 Scales the absolute translation
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("scaleTranslation") public function scaleTranslation(num:Float):Void;
+	/**
+		SHARED
+		 Returns whether the matrix is equal to Identity matrix or not
+	**/
+	@:native("isIdentity") public function isIdentity():Bool;
+	/**
+		SHARED
+		 Sets the scale
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("setScale") public function setScale(vec:sf.type.Vector):Void;
+	/**
+		SHARED
+		 Returns whether the matrix is a rotation matrix or not. Checks if the forward, right and up vectors are orthogonal and normalized.
+	**/
+	@:native("isRotationMatrix") public function isRotationMatrix():Bool;
+	/**
+		SHARED
+		 Scale the matrix
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("scale") public function scale(vec:sf.type.Vector):Void;
+	/**
+		SHARED
+		 tostring metamethod
+	**/
+	@:native("__tostring") public function __tostring():std.String;
+	/**
+		SHARED
+		 Translate the matrix
+	**/
+	@:native("translate") public function translate(vec:sf.type.Vector):Void;
+	/**
+		SHARED
+		 Returns forward vector of matrix. First matrix column
+	**/
+	@:native("getForward") public function getForward():sf.type.Vector;
+	/**
+		SHARED
+		 Sets the translation
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("setTranslation") public function setTranslation(vec:sf.type.Vector):Void;
+	/**
+		SHARED
+		 Sets the rotation or the matrix to the rotation by an axis and angle
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("setAxisAngle") public function setAxisAngle(axis:sf.type.Vector, angle:Float):Void;
 	/**
 		SHARED
 		 Returns up vector of matrix. Third matrix column
@@ -145,14 +102,14 @@ extern class VMatrixData {
 	@:native("getUp") public function getUp():sf.type.Vector;
 	/**
 		SHARED
-		 Gets the rotation axis and angle of rotation of the rotation matrix
+		 Returns all 16 fields of the matrix in row-major order
 	**/
-	@:native("getAxisAngle") public function getAxisAngle():sf.type.Vector;
+	@:native("unpack") public function unpack():...Float;
 	/**
 		SHARED
-		 tostring metamethod
+		 Converts the matrix to a 4x4 table
 	**/
-	@:native("__tostring") public function __tostring():std.String;
+	@:native("toTable") public function toTable():lua.Table<Dynamic,Dynamic>;
 	/**
 		SHARED
 		 Allows you to set all 16 fields in row-major order
@@ -161,15 +118,26 @@ extern class VMatrixData {
 	@:native("setUnpacked") public function setUnpacked(fields:...Float):Void;
 	/**
 		SHARED
-		 Returns all 16 fields of the matrix in row-major order
+		 Returns scale
 	**/
-	@:native("unpack") public function unpack():...Float;
+	@:native("getScale") public function getScale():sf.type.Vector;
 	/**
 		SHARED
-		 Sets the up direction of the matrix. Third column
+		 Inverts the matrix efficiently for translations and rotations
 		 Self-Modifies. Does not return anything
 	**/
-	@:native("setUp") public function setUp(up:sf.type.Vector):Void;
+	@:native("invertTR") public function invertTR():Void;
+	/**
+		SHARED
+		 Returns angles
+	**/
+	@:native("getAngles") public function getAngles():sf.type.Angle;
+	/**
+		SHARED
+		 Inverts the matrix. Inverting the matrix will fail if its determinant is 0 or close to 0
+		 Self-Modifies.
+	**/
+	@:native("invert") public function invert():Bool;
 	/**
 		SHARED
 		 Sets a specific field in the matrix
@@ -178,19 +146,51 @@ extern class VMatrixData {
 	@:native("setField") public function setField(row:Float, column:Float, value:Float):Void;
 	/**
 		SHARED
-		 Scales the absolute translation
+		 Returns an inverted matrix. Efficiently for translations and rotations
+	**/
+	@:native("getInverseTR") public function getInverseTR():sf.type.VMatrix;
+	/**
+		SHARED
+		 Sets the right direction of the matrix. Negated second column
 		 Self-Modifies. Does not return anything
 	**/
-	@:native("scaleTranslation") public function scaleTranslation(num:Float):Void;
+	@:native("setRight") public function setRight(right:sf.type.Vector):Void;
+	/**
+		SHARED
+		 Returns an inverted matrix. Inverting the matrix will fail if its determinant is 0 or close to 0
+	**/
+	@:native("getInverse") public function getInverse():sf.type.VMatrix;
+	/**
+		SHARED
+		 Rotate the matrix
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("rotate") public function rotate(ang:sf.type.Angle):Void;
+	/**
+		SHARED
+		 Returns translation
+	**/
+	@:native("getTranslation") public function getTranslation():sf.type.Vector;
+	/**
+		SHARED
+		 Gets the rotation axis and angle of rotation of the rotation matrix
+	**/
+	@:native("getAxisAngle") public function getAxisAngle():sf.type.Vector;
+	/**
+		SHARED
+		 Copies The matrix and returns a new matrix
+	**/
+	@:native("clone") public function clone():sf.type.VMatrix;
+	/**
+		SHARED
+		 Sets the up direction of the matrix. Third column
+		 Self-Modifies. Does not return anything
+	**/
+	@:native("setUp") public function setUp(up:sf.type.Vector):Void;
 }
 
 @:forward
 extern abstract VMatrix(VMatrixData) {
-	/**
-		SHARED
-		 Multiplies two matrices (Left must be a VMatrix)
-	**/
-	@:op(A*B) public function __mul(A:Any):Any;
 	/**
 		SHARED
 		 Subtracts two matrices (why would you do this?)
@@ -201,5 +201,10 @@ extern abstract VMatrix(VMatrixData) {
 		 Adds two matrices (why would you do this?)
 	**/
 	@:op(A+B) public function __add(A:Any):Any;
+	/**
+		SHARED
+		 Multiplies two matrices (Left must be a VMatrix)
+	**/
+	@:op(A*B) public function __mul(A:Any):Any;
 }
 
