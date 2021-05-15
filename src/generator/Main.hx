@@ -185,8 +185,10 @@ function genLibrary( lib_name:String, class_data: LibraryDoc ) {
 }
 
 function getTypeExtends(type_name: String): String {
-    if (CLASS_EXTENSIONS.exists(type_name))
-        return 'extends ${ CLASS_EXTENSIONS.get(type_name) }Data ';
+    if (CLASS_EXTENSIONS.exists(type_name)) {
+        var super_type = CLASS_EXTENSIONS.get(type_name);
+        return 'extends sf.type.$super_type.${super_type}Data ';
+    }
     return '';
 }
 
