@@ -8,6 +8,7 @@ Write Starfall scripts in the same typed, null safe and powerful language that m
 <details>
   <summary> Example snippet </summary>
   <!-- Haven't actually tested this lol -->
+
   ![image](https://user-images.githubusercontent.com/56230599/118430103-28b9ba00-b688-11eb-9a4d-e851833ab50c.png)
 </details>
 
