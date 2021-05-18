@@ -57,9 +57,12 @@ Make a Haxe project, and in your ``build.hxml`` file add:
 # Link to sfhaxe.
 --library sfhaxe
 
-# Either you can define a single one of these, both of them, or SHARED depending on what you want the chip to be targeted for.
---define SERVER
---define CLIENT
+# Example Defines
+--define SERVER # Can be SERVER, CLIENT or SHARED
+--define NAME=A cool chip
+--define SUPERUSER
+--define AUTHOR=Vurv
+--define MODEL=a/model/path.mdl
 
 # Set the Haxe path to the current directory of the hxml + /src/
 --class-path src
