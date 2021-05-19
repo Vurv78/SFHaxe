@@ -15,7 +15,7 @@ import Hardwired.GENERIC_LUA_TYPES;
 import Hardwired.HAXE_OPS;
 import Hardwired.HxOpData;
 
-final VERSION = "0.3.1";
+final VERSION = "0.3.2";
 
 typedef AbstractPile = Array<{
     fn_data: MethodDoc,
