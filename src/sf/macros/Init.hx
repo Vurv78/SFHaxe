@@ -28,7 +28,7 @@ class Init {
                 writer.writeString('--@author ${ author }\n');
 
                 #if MODEL
-                    writer.writeString('--@model ${ Context.definedValue("MODEL") }\n')
+                    writer.writeString('--@model ${ Context.definedValue("MODEL") }\n');
                 #end
 
                 #if SUPERUSER
