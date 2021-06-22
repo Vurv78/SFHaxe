@@ -3,8 +3,6 @@
 --library hre
 --library json2object
 
---debug
-
 # Link to SFHaxe, don't need to define lua-vanilla,
 # SFHaxe does that for you.
 
