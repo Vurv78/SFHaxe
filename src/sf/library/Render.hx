@@ -295,7 +295,7 @@ package sf.library;
 		CLIENT
 		 Enables a scissoring rect which limits the drawing area. Only works 2D contexts such as HUD or render targets.
 	**/
-	#if CLIENT @:native("enableScissorRect") public static function enableScissorRect(startX:Float, startY:Float, endX:Float, endX:Float):Void;#end
+	#if CLIENT @:native("enableScissorRect") public static function enableScissorRect(startX:Float, startY:Float, endX:Float, endY:Float):Void;#end
 	/**
 		CLIENT
 		 Gets a 2D cursor position where ply is aiming at the current rendered screen or nil if they aren't aiming at it.
@@ -425,7 +425,7 @@ package sf.library;
 		 \- Lucida Console
 		 \- Times New Roman
 	**/
-	#if CLIENT @:native("createFont") public static function createFont(font:std.String, ?size:Null<Float>, ?weight:Null<Float>, ?antialias:Null<Bool>, ?additive:Null<Bool>, ?shadow:Null<Bool>, ?outline:Null<Bool>, ?blur:Null<Bool>, ?extended:Null<Bool>):Void;#end
+	#if CLIENT @:native("createFont") public static function createFont(font:std.String, ?size:Null<Float>, ?weight:Null<Float>, ?antialias:Null<Bool>, ?additive:Null<Bool>, ?shadow:Null<Bool>, ?outline:Null<Bool>, ?blur:Null<Bool>, ?extended:Null<Bool>):std.String;#end
 	/**
 		CLIENT
 		 Resets stencil operations to their default behavior

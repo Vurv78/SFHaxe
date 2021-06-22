@@ -13,7 +13,7 @@ extern class BassData {
 	#if CLIENT @:native("setPos") public function setPos(pos:sf.type.Vector):Void;#end
 	/**
 		CLIENT
-		 Stops playing the sound.
+		 Stops playing the sound and destroys it. Use pause instead if you don't want it destroyed
 	**/
 	#if CLIENT @:native("stop") public function stop():Void;#end
 	/**
@@ -46,11 +46,6 @@ extern class BassData {
 		 Gets the relative volume between the left and right audio channels.
 	**/
 	#if CLIENT @:native("getPan") public function getPan():Float;#end
-	/**
-		CLIENT
-		 Removes the sound from the game so new one can be created if limit is reached
-	**/
-	#if CLIENT @:native("destroy") public function destroy():Void;#end
 	/**
 		CLIENT
 		 Retrieves the number of bits per sample of the sound channel.
@@ -101,7 +96,7 @@ extern class BassData {
 		CLIENT
 		 Sets the current playback time of the sound channel. Requires the 'noblock' flag
 	**/
-	#if CLIENT @:native("setTime") public function setTime(time:Float):Void;#end
+	#if CLIENT @:native("setTime") public function setTime(time:Float, ?dontDecode:Null<Bool>):Void;#end
 }
 
 @:forward

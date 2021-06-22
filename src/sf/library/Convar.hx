@@ -47,9 +47,8 @@ package sf.library;
 	/**
 		CLIENT
 		 Returns true if a given FCVAR flag is set for this ConVar.
-		 https://wiki.facepunch.com/gmod/Enums/FCVAR
 	**/
-	#if CLIENT @:native("hasFlag") public static function hasFlag(name:std.String):Bool;#end
+	#if CLIENT @:native("hasFlag") public static function hasFlag(name:std.String, flag:Float):Bool;#end
 	/**
 		CLIENT
 		 Returns value of the ConVar as a string.

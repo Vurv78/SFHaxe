@@ -200,7 +200,7 @@ package sf.library;
 	@:native("readAngle") public static function readAngle():sf.type.Angle;
 	/**
 		SHARED
-		 Streams a large 20MB string.
+		 Streams up to 64MB strings. Anything over 20MB with compression enabled will throw cpu quota
 	**/
 	@:native("writeStream") public static function writeStream(str:std.String, ?compress:Null<Bool>):Void;
 }

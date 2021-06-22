@@ -47,6 +47,11 @@ package sf.library;
 	**/
 	@:native("getTimeScale") public static function getTimeScale():Float;
 	/**
+		CLIENT
+		 Returns the server's frame time and standard deviation
+	**/
+	#if CLIENT @:native("serverFrameTime") public static function serverFrameTime():Float;#end
+	/**
 		SHARED
 		 Returns the number of seconds between each gametick
 	**/
@@ -73,14 +78,14 @@ package sf.library;
 	#if CLIENT @:native("hasFocus") public static function hasFocus():Bool;#end
 	/**
 		SHARED
-		 Returns AmmoData for given id
-	**/
-	@:native("getAmmoData") public static function getAmmoData(id:Float):lua.Table<Dynamic,Dynamic>;
-	/**
-		SHARED
 		 Checks whether the specified game is mounted
 	**/
 	@:native("isMounted") public static function isMounted(str:std.String):Bool;
+	/**
+		SHARED
+		 Returns AmmoData for given id
+	**/
+	@:native("getAmmoData") public static function getAmmoData(id:Float):lua.Table<Dynamic,Dynamic>;
 	/**
 		SHARED
 		 Returns true if the server is on a LAN

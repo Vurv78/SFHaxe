@@ -121,15 +121,15 @@ package sf.library;
 	**/
 	@:native("getmetatable") public static function getmetatable(tbl:lua.Table<Dynamic,Dynamic>):lua.Table<Dynamic,Dynamic>;
 	/**
-		CLIENT
-		 Returns the local player's camera forward vector
-	**/
-	#if CLIENT @:native("eyeVector") public static function eyeVector():sf.type.Vector;#end
-	/**
 		SHARED
 		 Generates the CRC checksum of the specified string. (https://en.wikipedia.org/wiki/Cyclic_redundancy_check)
 	**/
 	@:native("crc") public static function crc(stringToHash:std.String):std.String;
+	/**
+		CLIENT
+		 Returns the local player's camera forward vector
+	**/
+	#if CLIENT @:native("eyeVector") public static function eyeVector():sf.type.Vector;#end
 	/**
 		SHARED
 		 Returns the current count for this Think's CPU Time.
@@ -188,14 +188,14 @@ package sf.library;
 	@:native("Matrix") public static function Matrix(?Optional:Null<lua.Table<Dynamic,Dynamic>>):sf.type.VMatrix;
 	/**
 		SHARED
-		 Prints a table to player's chat
-	**/
-	@:native("printTable") public static function printTable(tbl:lua.Table<Dynamic,Dynamic>):Void;
-	/**
-		SHARED
 		 Same as owner() on the server. On the client, returns the local player
 	**/
 	@:native("player") public static function player(?num:Null<Float>):sf.type.Player;
+	/**
+		SHARED
+		 Prints a table to player's chat
+	**/
+	@:native("printTable") public static function printTable(tbl:lua.Table<Dynamic,Dynamic>):Void;
 	/**
 		SHARED
 		 Runs an included directory, but does not cache the result.
@@ -223,15 +223,15 @@ package sf.library;
 	@:native("getLibraries") public static function getLibraries():lua.Table<Dynamic,Dynamic>;
 	/**
 		SHARED
+		 Returns if this is the first time this hook was predicted.
+	**/
+	@:native("isFirstTimePredicted") public static function isFirstTimePredicted():Bool;
+	/**
+		SHARED
 		 Runs an included script and caches the result.
 		 Works pretty much like standard Lua require()
 	**/
 	@:native("require") public static function require(file:std.String):Dynamic;
-	/**
-		SHARED
-		 Returns if this is the first time this hook was predicted.
-	**/
-	@:native("isFirstTimePredicted") public static function isFirstTimePredicted():Bool;
 	/**
 		SHARED
 		 Throws an exception
@@ -354,14 +354,14 @@ package sf.library;
 	@:native("ramUsed") public static function ramUsed():Float;
 	/**
 		SHARED
-		 Gets an SF type's methods table
-	**/
-	@:native("getMethods") public static function getMethods(sfType:std.String):lua.Table<Dynamic,Dynamic>;
-	/**
-		SHARED
 		 Used to select single values from a vararg or get the count of values in it.
 	**/
 	@:native("select") public static function select(parameter:Any, vararg:Dynamic):Any;
+	/**
+		SHARED
+		 Gets an SF type's methods table
+	**/
+	@:native("getMethods") public static function getMethods(sfType:std.String):lua.Table<Dynamic,Dynamic>;
 	/**
 		SHARED
 		 Creates a Quaternion

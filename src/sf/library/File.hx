@@ -28,6 +28,11 @@ package sf.library;
 	#if CLIENT @:native("readTemp") public static function readTemp(filename:std.String):Null<std.String>;#end
 	/**
 		CLIENT
+		 Reads a file asynchronously
+	**/
+	#if CLIENT @:native("asyncRead") public static function asyncRead(path:std.String, callback:haxe.Constraints.Function, ?sync:Null<Bool>):Float;#end
+	/**
+		CLIENT
 		 Opens and returns a file
 	**/
 	#if CLIENT @:native("open") public static function open(path:std.String, mode:std.String):Null<sf.type.File>;#end
@@ -51,6 +56,11 @@ package sf.library;
 		 Checks if a file exists
 	**/
 	#if CLIENT @:native("exists") public static function exists(path:std.String):Null<Bool>;#end
+	/**
+		CLIENT
+		 Reads a temp file's data asynchronously
+	**/
+	#if CLIENT @:native("asyncReadTemp") public static function asyncReadTemp(filename:std.String, callback:haxe.Constraints.Function, ?sync:Null<Bool>):Float;#end
 	/**
 		CLIENT
 		 Reads a file from path
