@@ -14,5 +14,5 @@
 
 --each
 
---cpp bin/cpp
+--hl bin/hl
 --next

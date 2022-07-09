@@ -1,3 +1,3 @@
 haxe build.hxml --debug
-bin\cpp\Main-debug.exe
+hl bin\hl
 pause
